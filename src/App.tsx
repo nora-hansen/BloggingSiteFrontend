@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import TopBar from './components/TopBar/TopBar'
 
@@ -6,7 +6,6 @@ function App() {
   return (
     <>
     <TopBar />
-      <h1>Hello :)</h1>
     </>
   )
 }
