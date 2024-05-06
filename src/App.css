@@ -12,5 +12,6 @@ table { border-collapse: collapse; border-spacing: 0;}
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh; /* This is the default height */
+  height: auto; /* If the Main part grows bigger than the window, grow :) */
 }

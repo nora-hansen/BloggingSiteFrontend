@@ -1,7 +1,8 @@
 main {
     margin-top: 10px;
     width: 75%;
-    height: 80%;
+    min-height: 80vh;
+    height: auto;
     padding: 10px;
 
     border-width: 1px;
