@@ -1,10 +1,13 @@
+import LeftTop from './LeftTop/LeftTop';
+import ProfileNav from './ProfileNav/ProfileNav';
 import './TopBar.css'
 
 function TopBar()
 {
     return(
         <header>
-            <h1>My name is header :D</h1>
+            <LeftTop />
+            <ProfileNav />
         </header>
     )
 }
