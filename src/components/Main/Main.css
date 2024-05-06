@@ -1,0 +1,13 @@
+main {
+    margin-top: 10px;
+    width: 75%;
+    height: 80%;
+    padding: 10px;
+
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: rgb(192, 215, 223);
+
+    background-color: ghostwhite;
+}
