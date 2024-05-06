@@ -14,4 +14,6 @@ table { border-collapse: collapse; border-spacing: 0;}
   align-items: center;
   min-height: 100vh; /* This is the default height */
   height: auto; /* If the Main part grows bigger than the window, grow :) */
+
+  justify-content: space-between;
 }
