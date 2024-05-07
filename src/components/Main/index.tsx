@@ -1,13 +1,30 @@
+import Home from './Home';
 import './Main.css';
+
+import { Routes, Route } from 'react-router-dom'
 
 function Main()
 {
     return(
         <main>
-            <h1>HOME</h1>
-            <h1>Soups</h1>
-            <p>Lorem ipsum and the like, hello. This is the main part of the website. Stuff will be here. With time..</p>
-            <p>This is technically the first update that will show, so, uh, actually, nvm</p>
+            <Routes>
+                <Route 
+                    path="/"
+                    element={<Home />}
+                />
+                <Route 
+                    path="/home"
+                    element={<Home />}
+                />
+                <Route
+                    path="/all"
+                    element={<p>All</p>}
+                />
+                <Route
+                    path="create"
+                    element={<p>Create</p>}
+                />
+            </Routes>
         </main>
     );
 }
