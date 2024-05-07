@@ -2,13 +2,11 @@ import FriendList from './FriendList';
 import './Friends.css'
 
 function Friends()
-{
-    
-
-    return(
+{    return(
         <div className="friends-side">
             <p>Friends</p>
-            <FriendList />
+            <FriendList
+            />
         </div>
     )
 }
