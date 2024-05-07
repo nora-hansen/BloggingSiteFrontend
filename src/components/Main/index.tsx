@@ -4,6 +4,7 @@ import './Main.css';
 import { Routes, Route } from 'react-router-dom'
 import SignUp from './SignUp';
 import Login from './Login';
+import All from './All';
 
 function Main()
 {
@@ -20,7 +21,7 @@ function Main()
                 />
                 <Route
                     path="/all"
-                    element={<p>All</p>}
+                    element={<All />}
                 />
                 <Route
                     path="create"

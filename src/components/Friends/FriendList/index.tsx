@@ -5,11 +5,6 @@ import { useContext } from "react";
 
 import { FriendContext } from "../../../App";
 
-interface IFriend {
-    name: string,
-    iconUrl: string
-}
-
 function FriendList()
 {
     const context = useContext(FriendContext)
