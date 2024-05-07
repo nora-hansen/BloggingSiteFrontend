@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './SignUp.css'
+import { Link } from 'react-router-dom';
 
 function SignUp()
 {
@@ -54,6 +55,8 @@ function SignUp()
                 </label>
                 <input type="submit" value="Create account"/>
             </form>
+            <p>Already have an account?</p>
+            <Link to="/login"><button>Login instead</button></Link>
         </div>
     )
 }

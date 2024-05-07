@@ -3,6 +3,7 @@ import './Main.css';
 
 import { Routes, Route } from 'react-router-dom'
 import SignUp from './SignUp';
+import Login from './Login';
 
 function Main()
 {
@@ -28,6 +29,10 @@ function Main()
                 <Route
                     path="signup"
                     element={<SignUp />}
+                />
+                <Route
+                    path="login"
+                    element={<Login />}
                 />
             </Routes>
         </main>
