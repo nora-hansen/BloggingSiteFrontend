@@ -2,6 +2,7 @@ import Home from './Home';
 import './Main.css';
 
 import { Routes, Route } from 'react-router-dom'
+import SignUp from './SignUp';
 
 function Main()
 {
@@ -23,6 +24,10 @@ function Main()
                 <Route
                     path="create"
                     element={<p>Create</p>}
+                />
+                <Route
+                    path="signup"
+                    element={<SignUp />}
                 />
             </Routes>
         </main>

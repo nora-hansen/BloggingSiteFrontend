@@ -1,0 +1,22 @@
+.sign-up-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sign-up-page form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sign-up-page h1 {
+    font-size: x-large;
+}
+
+.sign-up-page label {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
