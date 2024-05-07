@@ -1,0 +1,39 @@
+.post-item {
+    padding: 10px;
+    border-bottom: 1px;
+
+}
+
+.post-content {
+    background-color: rgb(250, 185, 250);
+    padding: 15px;
+    border-color: blue;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 7px;
+}
+
+.post-content h1 {
+    font-size: larger;
+}
+
+.post-content p {
+    font-size: 85%;
+}
+
+.post-user-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px;
+}
+
+.post-user-details p {
+    padding-left: 10px;
+}
+
+.post-info {
+    font-size: 70%;
+    font-style: italic;
+    padding: 10px;
+}
