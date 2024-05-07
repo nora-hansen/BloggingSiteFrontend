@@ -29,7 +29,7 @@ function SignUp()
     }
 
     const handleSubmit = (event) => {
-
+        event.preventDefault()
     }
 
     return(
