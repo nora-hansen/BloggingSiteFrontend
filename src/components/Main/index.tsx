@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom'
 import SignUp from './SignUp';
 import Login from './Login';
 import All from './All';
+import Create from './Create';
 
 function Main()
 {
@@ -25,7 +26,7 @@ function Main()
                 />
                 <Route
                     path="create"
-                    element={<p>Create</p>}
+                    element={<Create />}
                 />
                 <Route
                     path="signup"

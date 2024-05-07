@@ -1,7 +1,7 @@
 .post-item {
+    width: 90%;
     padding: 10px;
     border-bottom: 1px;
-
 }
 
 .post-content {
@@ -11,6 +11,8 @@
     border-width: 1px;
     border-style: solid;
     border-radius: 7px;
+    width: 100%;
+    display: block;
 }
 
 .post-content h1 {
@@ -19,6 +21,10 @@
 
 .post-content p {
     font-size: 85%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
 }
 
 .post-user-details {
