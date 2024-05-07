@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import './Post.css'
 
 function Post(post: {
@@ -17,7 +16,7 @@ function Post(post: {
 
     return(
         <div className="post-item">
-            <div className="post-user-detals">
+            <div className="post-user-details">
                 <img src="../hamster.jpg"></img>
                 <p>Anonymous hamster</p>
             </div>

@@ -11,9 +11,15 @@ function All() {
     return(
         <div className="all-posts-page">
             <h1>All posts</h1>
-            {postContext.posts.map((post, index) => 
-                <Post key={index} title={post.title}></Post>)
-            }
+            <div className="post-list">
+                {postContext.posts.map((post, index) => 
+                    <Post key={index} 
+                    title={post.title} 
+                    content={post.content} 
+                    postDate={post.postDate}
+                    />)
+                }
+            </div>
         </div>
     )
 }
