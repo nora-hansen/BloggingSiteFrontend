@@ -1,4 +1,4 @@
-import FriendListItem from "./FriendListItem/FriendListItem";
+import FriendListItem from "./FriendListItem";
 import './FriendList.css'
 
 

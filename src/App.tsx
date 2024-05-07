@@ -1,8 +1,8 @@
 import './App.css'
-import TopBar from './components/TopBar/TopBar'
-import Main from './components/Main/Main'
-import Footer from './components/Footer/Footer'
-import Friends from './components/Friends/Friends'
+import TopBar from './components/TopBar'
+import Main from './components/Main'
+import Footer from './components/Footer'
+import Friends from './components/Friends'
 
 function App() {
   return (

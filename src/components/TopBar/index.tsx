@@ -1,5 +1,5 @@
-import LeftTop from './LeftTop/LeftTop';
-import ProfileNav from './ProfileNav/ProfileNav';
+import LeftTop from './LeftTop';
+import ProfileNav from './ProfileNav';
 import './TopBar.css'
 
 function TopBar()

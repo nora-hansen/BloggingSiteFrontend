@@ -1,9 +1,9 @@
-import FriendList from './FriendList/FriendList';
+import FriendList from './FriendList';
 import './Friends.css'
 
 function Friends()
 {
-
+    
 
     return(
         <div className="friends-side">
