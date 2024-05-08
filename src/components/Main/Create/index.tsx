@@ -68,8 +68,8 @@ function Create()
                         </fieldset>
                 </div>
                 <div className="create-post-buttons">
-                    <button>Save as draft</button>
-                    <button>Post</button>
+                    <button name="create" value="draft">Save as draft</button>
+                    <button name="create" value="post">Post</button>
                 </div>
             </form>
 

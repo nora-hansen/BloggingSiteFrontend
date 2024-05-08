@@ -19,7 +19,6 @@ table { border-collapse: collapse; border-spacing: 0;}
   width: 100vw;
 
   justify-content: space-between;
-  background-color: khaki;
 }
 
 .middle {
@@ -30,6 +29,4 @@ table { border-collapse: collapse; border-spacing: 0;}
   height: 100%;
 
   align-items: center;
-
-  background-color: indigo;
 }

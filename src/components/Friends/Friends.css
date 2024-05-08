@@ -1,9 +1,6 @@
 .friends-side {
-    background-color:aquamarine;
+    background-color:rgb(255, 216, 236);
 
-    border-color: aqua;
-    border-style: solid;
-    border-width: 1px;
     border-radius: 10px;
 
     height: 300px;
