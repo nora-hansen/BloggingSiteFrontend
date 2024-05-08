@@ -88,7 +88,9 @@ const FriendContext = createContext<FriendsContextType>(defaultFriends)
 const PostContext = createContext<PostsContextType>(defaultPosts)
 const UserContext = createContext<UserContextType>(defaultUser)
 
-function App() {
+function App() 
+{
+  
 
   const [friends, setFriends] = useState<IFriend[]>(tempFriends)
   const [posts, setPosts] = useState<IPost[]>(tempPosts)

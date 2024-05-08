@@ -18,3 +18,10 @@
     width: 100px;
     height: 100px;
 }
+
+.profile-bio {
+    padding: 5px;
+    background-color: rgb(255, 194, 204);
+    margin: 3px;
+    border-radius: 5px;
+}

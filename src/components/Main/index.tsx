@@ -7,11 +7,16 @@ import Login from './Login';
 import All from './All';
 import Create from './Create';
 import Profile from './Profile';
+import { useState } from 'react';
 
 function Main()
 {
+    const [bgColor, setBgColor] = useState<string>("#FFFFFF")
+
     return(
-        <main>
+        <main
+            style={{backgroundColor: bgColor ? bgColor : "#FFFFFF"}}
+        >
             <Routes>
                 <Route 
                     path="/"
@@ -39,7 +44,9 @@ function Main()
                 />
                 <Route
                     path="user"
-                    element={<Profile />}
+                    element={<Profile 
+                        setBgColor={setBgColor}
+                    />}
                 />
             </Routes>
         </main>
