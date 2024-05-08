@@ -12,15 +12,15 @@ import { useEffect, useState } from 'react';
 function Main()
 {
     const location = useLocation()
-    const [bgColor, setBgColor] = useState<string>("#FFFFFF")
+    const [bgColor, setBgColor] = useState<string>("#eeeeee")
 
     useEffect(() => {
-        if (location.pathname != "/user")setBgColor("#FFFFFF")
+        if (location.pathname != "/user") setBgColor("#eeeeee")
     }, [location])
 
     return(
         <main
-            style={{backgroundColor: bgColor ? bgColor : "#FFFFFF"}}
+            style={{backgroundColor: bgColor ? bgColor : "#eeeeee"}}
         >
             <Routes>
                 <Route 

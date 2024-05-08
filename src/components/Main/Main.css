@@ -7,8 +7,5 @@ main {
     height: auto;
     padding: 10px;
 
-    border-width: 1px;
-    border-style: solid;
     border-radius: 10px;
-    border-color: rgb(192, 215, 223);
 }

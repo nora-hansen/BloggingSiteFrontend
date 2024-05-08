@@ -25,3 +25,12 @@
     margin: 3px;
     border-radius: 5px;
 }
+
+.profile-post {
+    margin: 5px;
+    padding: 10px;
+}
+
+.profile-post h1 {
+    font-size: larger;
+}

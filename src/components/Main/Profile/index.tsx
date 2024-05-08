@@ -20,13 +20,18 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
                     <img src={userContext.user.iconUrl}></img>
                     <h1>{userContext.user.displayName}</h1>
                 </div>
-                <div className="profile-bio">
+                <div className="profile-bio"                 
+                style={{backgroundColor: tempProfiles[4].postColor ? tempProfiles[4].postColor : "#FFFFFF", color: tempProfiles[4].fontColor ? tempProfiles[4].fontColor : "#000000"}} >
                     <p>{userContext.user.bio}</p>
                 </div>
             </div>
-            <div className="profile-posts">
+            <div className="profile-posts"
+                
+                >
                 {postContext.posts.map((post, index) => 
-                <div className="user-post" key={index}>
+                <div className="profile-post" key={index}
+                style={{backgroundColor: tempProfiles[4].postColor ? tempProfiles[4].postColor : "#FFFFFF", color: tempProfiles[4].fontColor ? tempProfiles[4].fontColor : "#000000"}} 
+                >
                     <h1>{post.title}</h1>
                     <p>{post.content}</p>
                 </div>
