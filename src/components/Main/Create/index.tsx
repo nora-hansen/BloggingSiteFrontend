@@ -51,7 +51,7 @@ function Create()
                 <div className="create-post-input-section">
                     <input type="text" name="title" placeholder="Title (optional)" onChange={handleChange}/>
                     <label htmlFor="content" ></label>
-                    <textarea id="content" name="content" placeholder="What's on your mind?" onChange={handleChange}>
+                    <textarea id="content" name="content" placeholder="What's on your mind?" onChange={handleChange} required>
                     </textarea>
                 </div>
                 <div className="create-post-info-edit">
