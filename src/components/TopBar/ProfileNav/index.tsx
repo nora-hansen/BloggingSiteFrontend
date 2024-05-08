@@ -6,7 +6,7 @@ function ProfileNav()
     return(
         <div className="profile-nav">
             <p>Sign out</p>
-            <Link to="/user"><img src="../hamster.jpg" alt="Placeholder image of a hamster on its back."></img></Link>
+            <Link to="/user/1"><img src="../hamster.jpg" alt="Placeholder image of a hamster on its back."></img></Link>
         </div>
     );
 }

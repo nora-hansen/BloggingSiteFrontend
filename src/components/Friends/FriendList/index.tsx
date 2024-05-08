@@ -11,7 +11,7 @@ function FriendList()
     return(
         <ul className="friend-list">
             {context.friends.map((friend, index) => 
-                <FriendListItem name={friend.name} iconUrl={friend.iconUrl} key={index}/>
+                <FriendListItem id={friend.id} name={friend.name} iconUrl={friend.iconUrl} key={index}/>
             )}
         </ul>
     )

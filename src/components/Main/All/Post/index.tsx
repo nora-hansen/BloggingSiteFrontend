@@ -26,8 +26,8 @@ function Post(post: {
     return(
         <div className="post-item">
             <div className="post-user-details">
-                <Link to="/user"><img src={userContext.user.iconUrl}></img></Link>
-                <Link to="/user"><p>{userContext.user.displayName}</p></Link>
+                <Link to="/user/1"><img src={userContext.user.iconUrl}></img></Link>
+                <Link to="/user/1"><p>{userContext.user.displayName}</p></Link>
             </div>
             <div className={style}
                 onClick={handleClick}
