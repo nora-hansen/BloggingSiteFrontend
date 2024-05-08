@@ -9,7 +9,7 @@ function Home()
                 <h1>What's new?</h1>
                 <div className="home-updates-list">
                     <ul>
-                        <li>- The beginning of the home page</li>
+                        <li>- 08/05/2024 The beginning of the home page</li>
                     </ul>
                 </div>
             </div>
