@@ -7,6 +7,7 @@ import Friends from './components/Friends'
 
 import tempFriends from './temp-friends'
 import tempPosts from './temp-posts'
+import tempUser from './temp-user'
 
 interface IFriend {
   name: string,
@@ -20,6 +21,16 @@ interface IPost {
   userId: number,
   visibility: number,
   isDraft: boolean
+}
+
+interface IUser {
+  id: number,
+  email: string,
+  password: string,
+  displayName: string,
+  bio: string,
+  iconUrl: string,
+  profileId: number
 }
 
 const defaultFriends: FriendsContextType = 
@@ -48,6 +59,19 @@ const defaultPosts: PostsContextType =
   ]
 }
 
+const defaultUser: UserContextType = {
+  user: 
+  {
+    id: 1,
+    email: "",
+    password: "",
+    displayName: "",
+    bio: "",
+    iconUrl: "",
+    profileId: 0
+  }
+}
+
 type FriendsContextType = {
   friends: IFriend[]
 }
@@ -56,26 +80,34 @@ type PostsContextType = {
   posts: IPost[]
 }
 
+type UserContextType = {
+  user: IUser
+}
+
 const FriendContext = createContext<FriendsContextType>(defaultFriends)
 const PostContext = createContext<PostsContextType>(defaultPosts)
+const UserContext = createContext<UserContextType>(defaultUser)
 
 function App() {
 
   const [friends, setFriends] = useState<IFriend[]>(tempFriends)
   const [posts, setPosts] = useState<IPost[]>(tempPosts)
+  const [user, setUser] = useState<IUser>(tempUser)
 
   return (
     <div className="blog-fe">
-      <TopBar />
-      <div className="middle">
-        <div></div>
-        <PostContext.Provider value={{posts: posts}}>
-          <Main />
-        </PostContext.Provider>
-        <FriendContext.Provider value={{friends: friends}}>
-          <Friends />
-        </FriendContext.Provider>
-      </div>
+      <UserContext.Provider value={{user: user}}>
+        <TopBar />
+        <div className="middle">
+          <div></div>
+          <PostContext.Provider value={{posts: posts}}>
+            <Main />
+          </PostContext.Provider>
+          <FriendContext.Provider value={{friends: friends}}>
+            <Friends />
+          </FriendContext.Provider>
+        </div>
+      </UserContext.Provider>
       <Footer />
     </div>
   )
@@ -84,5 +116,6 @@ function App() {
 export {
   App, 
   FriendContext, 
-  PostContext
+  PostContext,
+  UserContext
 }

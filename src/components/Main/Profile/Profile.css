@@ -1,0 +1,20 @@
+.profile {
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-user-details {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.profile-image-name {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-image-name img {
+    width: 100px;
+    height: 100px;
+}
