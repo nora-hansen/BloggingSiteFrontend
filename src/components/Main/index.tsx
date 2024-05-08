@@ -1,17 +1,22 @@
 import Home from './Home';
 import './Main.css';
 
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import SignUp from './SignUp';
 import Login from './Login';
 import All from './All';
 import Create from './Create';
 import Profile from './Profile';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function Main()
 {
+    const location = useLocation()
     const [bgColor, setBgColor] = useState<string>("#FFFFFF")
+
+    useEffect(() => {
+        if (location.pathname != "/user")setBgColor("#FFFFFF")
+    }, [location])
 
     return(
         <main
