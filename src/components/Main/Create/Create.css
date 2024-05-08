@@ -1,0 +1,24 @@
+.create-post-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    background-color: darkkhaki;
+
+    height: 90%;
+}
+
+.create-post-input-section {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 10px;
+    background-color: indianred;
+
+    height: 90%;
+}
+
+.create-post-input-section textarea{
+    min-height: 200px;
+    height: auto;
+}
