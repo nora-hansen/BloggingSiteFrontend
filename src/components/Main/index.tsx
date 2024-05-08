@@ -6,6 +6,7 @@ import SignUp from './SignUp';
 import Login from './Login';
 import All from './All';
 import Create from './Create';
+import Profile from './Profile';
 
 function Main()
 {
@@ -25,16 +26,20 @@ function Main()
                     element={<All />}
                 />
                 <Route
-                    path="create"
+                    path="/create"
                     element={<Create />}
                 />
                 <Route
-                    path="signup"
+                    path="/signup"
                     element={<SignUp />}
                 />
                 <Route
-                    path="login"
+                    path="/login"
                     element={<Login />}
+                />
+                <Route
+                    path="user"
+                    element={<Profile />}
                 />
             </Routes>
         </main>
