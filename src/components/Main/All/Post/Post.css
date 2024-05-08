@@ -15,7 +15,22 @@
     display: block;
 }
 
+.post-content-full {
+    background-color: white;
+    padding: 15px;
+    border-color: rgb(133, 133, 133);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 7px;
+    width: 100%;
+    display: block;
+}
+
 .post-content h1 {
+    font-size: larger;
+}
+
+.post-content-full h1 {
     font-size: larger;
 }
 
@@ -24,7 +39,13 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
 
+.post-content-full p {
+    font-size: 85%;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .post-user-details {
