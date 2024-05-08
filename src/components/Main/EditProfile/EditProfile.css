@@ -1,0 +1,15 @@
+.edit-profile {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-colors {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.edit-profile-form {
+    display: flex;
+    flex-direction: row;
+}

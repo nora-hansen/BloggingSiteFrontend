@@ -1,10 +1,13 @@
-button {
+.left-top button {
     background-color: white;
     border: 0;
     margin-left: 5px;
+
+    cursor: pointer;
 }
 
-button:active {
+.left-top button:active {
     background-color:black;
     color: white;
+    cursor: pointer;
 }

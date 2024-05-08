@@ -9,7 +9,7 @@ function EditProfile()
     return(
         <div className="edit-profile">
             <h1>Edit Profile</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="edit-profile-form">
                 <div className="profile-colors">
                     <label htmlFor="bgColor">
                         Background color
