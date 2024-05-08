@@ -90,8 +90,6 @@ const UserContext = createContext<UserContextType>(defaultUser)
 
 function App() 
 {
-  
-
   const [friends, setFriends] = useState<IFriend[]>(tempFriends)
   const [posts, setPosts] = useState<IPost[]>(tempPosts)
   const [user, setUser] = useState<IUser>(tempUser)
