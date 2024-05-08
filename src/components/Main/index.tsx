@@ -8,6 +8,7 @@ import All from './All';
 import Create from './Create';
 import Profile from './Profile';
 import { useEffect, useState } from 'react';
+import EditProfile from './EditProfile';
 
 function Main()
 {
@@ -52,6 +53,10 @@ function Main()
                     element={<Profile 
                         setBgColor={setBgColor}
                     />}
+                />
+                <Route
+                    path="edit-profile"
+                    element={<EditProfile />}
                 />
             </Routes>
         </main>
