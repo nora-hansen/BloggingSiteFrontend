@@ -1,4 +1,7 @@
+import { useContext, useState } from 'react';
 import './Post.css'
+import { UserContext } from '../../../../App';
+import { Link } from 'react-router-dom';
 
 function Post(post: {
     title: string,
@@ -9,18 +12,26 @@ function Post(post: {
     isDraft: boolean}
     ) 
 {
-    // DOES NOT EXIST YET
-    // Use this for the user's username and picture, and linking to their profile
-    //       vvvvvvv
-    // const userContext = useContext(UserContext)
+    const [style, setStyle] = useState("post-content")
+
+    const userContext = useContext(UserContext)
+
+    const handleClick = (event) => {
+        if(style === "post-content") 
+            setStyle("post-content-full")
+        else 
+            setStyle("post-content")
+    }
 
     return(
         <div className="post-item">
             <div className="post-user-details">
-                <img src="../hamster.jpg"></img>
-                <p>Anonymous hamster</p>
+                <Link to="/user"><img src={userContext.user.iconUrl}></img></Link>
+                <Link to="/user"><p>{userContext.user.displayName}</p></Link>
             </div>
-            <div className="post-content">
+            <div className={style}
+                onClick={handleClick}
+            >
                 <h1>{post.title}</h1>
                 <p>{post.content}</p>
             </div>
