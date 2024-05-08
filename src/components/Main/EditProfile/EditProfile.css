@@ -13,3 +13,22 @@
     display: flex;
     flex-direction: row;
 }
+
+.profile-preview {
+    margin: 20px;
+    padding: 10px;
+    width: 30%;
+
+    border-radius: 10px;
+}
+
+.profile-preview-post {
+    margin: 20px;
+    padding: 10px;
+
+    border-radius: 10px;
+}
+
+.profile-preview-post h1 {
+    font-size: larger;
+}
