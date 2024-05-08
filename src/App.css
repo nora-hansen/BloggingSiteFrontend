@@ -3,7 +3,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section { 
 body { 
   line-height: 1; 
   font-family: Tahoma, Geneva, sans-serif;
-
+  width: 100vw;
 }
 ol,ul { list-style: none;}
 blockquote,q { quotes: none;}
@@ -16,8 +16,10 @@ table { border-collapse: collapse; border-spacing: 0;}
   align-items: center;
   min-height: 100vh; /* This is the default height */
   height: auto; /* If the Main part grows bigger than the window, grow :) */
+  width: 100vw;
 
   justify-content: space-between;
+  background-color: khaki;
 }
 
 .middle {
@@ -25,6 +27,9 @@ table { border-collapse: collapse; border-spacing: 0;}
   flex-direction: row;
   justify-content: space-between;  
   width: 100%;
+  height: 100%;
 
   align-items: center;
+
+  background-color: indigo;
 }
