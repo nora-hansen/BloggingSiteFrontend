@@ -20,14 +20,14 @@ const profiles = [
     {
         id: 4,
         bgColor: "#d8ffea",
-        fontColor: "#1f9657",
-        postColor: "#e6f7f2"
+        fontColor: "#aa3377",
+        postColor: "#FFFFf2"
     },
     {
         id: 5,
         bgColor: "#f8d3c5",
-        fontColor: "#667b68",
-        postColor: "#fceee9",
+        fontColor: "#667868",
+        postColor: "#fcfff9",
     }
 ]
 

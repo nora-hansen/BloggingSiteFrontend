@@ -8,8 +8,10 @@ import Friends from './components/Friends'
 import tempFriends from './temp-friends'
 import tempPosts from './temp-posts'
 import tempUser from './temp-user'
+import tempUsers from './temp-multiple-users'
 
 interface IFriend {
+  id: number,
   name: string,
   iconUrl: string
 }
@@ -23,7 +25,7 @@ interface IPost {
   isDraft: boolean
 }
 
-interface IUser {
+export interface IUser {
   id: number,
   email: string,
   password: string,
@@ -38,8 +40,9 @@ const defaultFriends: FriendsContextType =
   friends:
   [  
     {
-    name: "null",
-    iconUrl: "null"
+      id: 0,
+      name: "null",
+      iconUrl: "null"
     }
   ]
 }

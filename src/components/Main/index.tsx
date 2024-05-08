@@ -16,7 +16,11 @@ function Main()
     const [bgColor, setBgColor] = useState<string>("#eeeeee")
 
     useEffect(() => {
-        if (location.pathname != "/user") setBgColor("#eeeeee")
+        if (!location.pathname.startsWith('/user')) 
+            {
+                console.log(`${location.pathname} starts with /user? ${location.pathname.startsWith('/user')}`)
+                setBgColor("#eeeeee")
+            }
     }, [location])
 
     return(
@@ -49,13 +53,13 @@ function Main()
                     element={<Login />}
                 />
                 <Route
-                    path="user"
+                    path="/user/:userId"
                     element={<Profile 
                         setBgColor={setBgColor}
                     />}
                 />
                 <Route
-                    path="edit-profile"
+                    path="/user/edit-profile"
                     element={<EditProfile />}
                 />
             </Routes>
