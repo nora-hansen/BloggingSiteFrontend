@@ -5,9 +5,9 @@
 }
 
 .post-content {
-    background-color: rgb(250, 185, 250);
+    background-color: white;
     padding: 15px;
-    border-color: blue;
+    border-color: rgb(133, 133, 133);
     border-width: 1px;
     border-style: solid;
     border-radius: 7px;
