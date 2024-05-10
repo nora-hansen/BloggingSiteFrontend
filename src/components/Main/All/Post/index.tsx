@@ -40,14 +40,12 @@ function Post(post: {
             .then(data => setPostingUser(data))
     }, [post.userID])
 
+    // TODO: Reenable this. I had to remove it because the posts in the backend were wrongly set to isDraft
     // if(post.isDraft || post.visibility === 3) 
     //     return <></>
 
     if(postingUser?.id == undefined)
         return <p>Loading user...</p>
-
-    if(post)
-        console.log(post)
 
     return(
         <div className="post-item">

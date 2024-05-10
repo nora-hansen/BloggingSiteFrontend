@@ -16,7 +16,7 @@ interface IFriend {
   iconUrl: string
 }
 
-interface IPost {
+export interface IPost {
   title: string,
   content: string,
   postDate: string,
