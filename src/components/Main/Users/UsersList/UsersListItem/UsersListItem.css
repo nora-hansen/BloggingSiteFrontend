@@ -1,0 +1,10 @@
+.users-list-item {
+    height: 100%;
+    width: 99%;
+    background-color: rgb(255, 255, 255);
+    margin: 5px;
+
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+}
