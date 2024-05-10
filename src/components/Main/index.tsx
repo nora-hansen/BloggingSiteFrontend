@@ -9,6 +9,7 @@ import Create from './Create';
 import Profile from './Profile';
 import { useEffect, useState } from 'react';
 import EditProfile from './EditProfile';
+import Users from './Users';
 
 function Main()
 {
@@ -61,6 +62,10 @@ function Main()
                 <Route
                     path="/user/edit-profile"
                     element={<EditProfile />}
+                />
+                <Route
+                    path="/all-users"
+                    element={<Users />}
                 />
             </Routes>
         </main>
