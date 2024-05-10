@@ -7,16 +7,26 @@ import Post from './Post';
 function All() {
 
     const postContext = useContext(PostContext)
+    if(postContext.posts != null) {
+        console.log("HI ", postContext.posts.length
+        )
+    }
+
+    if(!postContext.posts)
+        return <></>
 
     return(
         <div className="all-posts-page">
             <h1>All posts</h1>
             <div className="post-list">
                 {postContext.posts.map((post, index) => 
-                    <Post key={index} 
-                    title={post.title} 
-                    content={post.content} 
+                    <Post key={index}
+                    title={post.title}
+                    content={post.content}
                     postDate={post.postDate}
+                    userID={post.userID} 
+                    visibility={post.visibility} 
+                    isDraft={post.isDraft}         
                     />)
                 }
             </div>

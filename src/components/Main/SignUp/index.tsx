@@ -2,6 +2,8 @@ import { useState } from 'react';
 import './SignUp.css'
 import { Link } from 'react-router-dom';
 
+import env from '../../../environment'
+
 function SignUp()
 {
     const [userDetails, setUserDetails] = useState({
@@ -15,22 +17,35 @@ function SignUp()
         const inputValue = event.target.value
         const inputName = event.target.name
 
-        if(inputName == "email") {
+        if(inputName === "email") {
             setUserDetails({...userDetails, email: inputValue})
         }
-        if(inputName == "displayname") {
+        if(inputName === "displayname") {
             setUserDetails({...userDetails, displayName: inputValue})
         }
-        if(inputName == "password") {
+        if(inputName === "password") {
             setUserDetails({...userDetails, password: inputValue})
         }
-        if(inputName == "iconUrl") {
+        if(inputName === "iconurl") {
             setUserDetails({...userDetails, iconUrl: inputValue})
         }
+
+        console.log(`${event.target.value} - ${event.target.name}`)
+        console.log(userDetails)
     }
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        fetch(`${env.url}/users`,   {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userDetails)
+        })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
     return(
@@ -51,7 +66,7 @@ function SignUp()
                 </label>
                 <label>
                     Picture (link, will be more advanced later)
-                    <input type="text" name="text" onChange={handleChange}/>
+                    <input type="text" name="iconurl" onChange={handleChange}/>
                 </label>
                 <input type="submit" value="Create account"/>
             </form>

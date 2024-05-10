@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import './App.css'
 import TopBar from './components/TopBar'
 import Main from './components/Main'
@@ -6,9 +6,9 @@ import Footer from './components/Footer'
 import Friends from './components/Friends'
 
 import tempFriends from './temp-friends'
-import tempPosts from './temp-posts'
 import tempUser from './temp-user'
 import tempUsers from './temp-multiple-users'
+import env from './environment'
 
 interface IFriend {
   id: number,
@@ -16,11 +16,11 @@ interface IFriend {
   iconUrl: string
 }
 
-interface IPost {
+export interface IPost {
   title: string,
   content: string,
   postDate: string,
-  userId: number,
+  userID: number,
   visibility: number,
   isDraft: boolean
 }
@@ -50,16 +50,7 @@ const defaultFriends: FriendsContextType =
 const defaultPosts: PostsContextType = 
 {
   posts:
-  [
-    {
-      title: "null",
-      content: "null",
-      postDate: "null",
-      userId: 0,
-      visibility: 0,
-      isDraft: false
-    }
-  ]
+  []
 }
 
 const defaultUser: UserContextType = {
@@ -94,8 +85,18 @@ const UserContext = createContext<UserContextType>(defaultUser)
 function App() 
 {
   const [friends, setFriends] = useState<IFriend[]>(tempFriends)
-  const [posts, setPosts] = useState<IPost[]>(tempPosts)
+  const [posts, setPosts] = useState<IPost[]>([])
   const [user, setUser] = useState<IUser>(tempUser)
+
+  useEffect(() => {
+    fetch(`${env.url}/posts`)
+      .then(response => response.json())
+      .then(data => setPosts(data))
+  }, [])
+
+  if(posts.length === 0) {
+    return <p>Loading posts...</p>
+  }
 
   return (
     <div className="blog-fe">
