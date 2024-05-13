@@ -21,6 +21,7 @@ function All() {
             <div className="post-list">
                 {postContext.posts.map((post, index) => 
                     <Post key={index}
+                    id={post.id}
                     title={post.title}
                     content={post.content}
                     postDate={post.postDate}

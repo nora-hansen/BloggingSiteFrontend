@@ -4,6 +4,7 @@ import { UserContext } from '../../../../App';
 import { Link } from 'react-router-dom';
 
 import env from '../../../../environment'
+import CommentList from './CommentList';
 
 export interface IUser {
     id: number,
@@ -16,6 +17,7 @@ export interface IUser {
   }
 
 function Post(post: {
+    id: number
     title: string,
     content: string,
     postDate: string,
@@ -59,6 +61,9 @@ function Post(post: {
                 <h1>{post.title}</h1>
                 <p>{post.content}</p>
             </div>
+            <CommentList 
+                postId={post.id}
+            />
             <div className="post-info">
                 <p>{post.postDate}</p>
             </div>

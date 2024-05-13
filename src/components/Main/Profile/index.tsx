@@ -42,7 +42,8 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
                 }
             })
 
-    }, [setBgColor, user])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     
     if(!user || !posts)
