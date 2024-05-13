@@ -9,6 +9,7 @@ function LeftTop()
             <Link to="/"><button aria-label="Navigate to home page">Home</button></Link>
             <Link to="/all"><button aria-label="Navigate to all posts page">All</button></Link>
             <Link to="/create"><button aria-label="Navigate to create post page">Create</button></Link>
+            <Link to="/all-users"><button aria-label="See a list of all users">Users</button></Link>
         </div>
     )
 }
