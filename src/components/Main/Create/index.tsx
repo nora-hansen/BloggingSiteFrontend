@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import './Create.css'
 import { UserContext } from '../../../App'
 import { Navigate, redirect } from 'react-router-dom'
+import env from '../../../environment'
 
 interface IPost {
     title: string,
@@ -45,7 +46,14 @@ function Create()
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        alert(`Thanks for trying! Not implemented. Your post:\n${post.title}\n${post.content}\nVisibility value: ${post.visibility}`)
+        fetch(`${env.url}/posts`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${userContext.bearer}`
+            },
+            body: JSON.stringify(post)
+        })
     }
 
 

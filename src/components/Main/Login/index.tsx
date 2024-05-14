@@ -29,6 +29,9 @@ function Login()
     const handleSubmit = (event) => {
         event.preventDefault()
 
+        // TODO: IMPLEMENT LATER!! Passwords in db are currently not hashed, 
+        // so this will cause current users to not be able to login
+        //              vvvvvv
         // const salt = genSaltSync(10);
         // const hashedPassword = hashSync(userDetails.password, salt);
         // setUserDetails({...userDetails, password: hashedPassword})
@@ -42,6 +45,18 @@ function Login()
         })
         .then(response => response.json())
         .then(data => userContext.setBearer(data.token))
+
+        if(userContext.bearer !== "") {
+            fetch(`${env.url}/users`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(userDetails)
+            })
+            .then(response => response.json())
+            .then(data => userContext.setUser(data))
+        }
     }
 
     return(
