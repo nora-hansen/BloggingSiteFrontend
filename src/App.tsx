@@ -64,7 +64,10 @@ const defaultUser: UserContextType = {
     bio: "",
     iconUrl: "",
     profileId: 0
-  }
+  },
+  bearer: "",
+  setBearer: () => {},
+  setUser: () => {}
 }
 
 type FriendsContextType = {
