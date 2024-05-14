@@ -29,7 +29,6 @@ export interface IPost {
 export interface IUser {
   id: number,
   email: string,
-  password: string,
   displayName: string,
   bio: string,
   iconUrl: string,
@@ -59,12 +58,14 @@ const defaultUser: UserContextType = {
   {
     id: 1,
     email: "",
-    password: "",
     displayName: "",
     bio: "",
     iconUrl: "",
     profileId: 0
-  }
+  },
+  bearer: "",
+  setBearer: () => {},
+  setUser: () => {}
 }
 
 type FriendsContextType = {
@@ -76,7 +77,10 @@ type PostsContextType = {
 }
 
 type UserContextType = {
-  user: IUser
+  bearer: string,
+  setBearer: (data: string) => void,
+  user: IUser,
+  setUser: (data: object) => void
 }
 
 const FriendContext = createContext<FriendsContextType>(defaultFriends)
@@ -87,7 +91,8 @@ function App()
 {
   const [friends, setFriends] = useState<IFriend[]>(tempFriends)
   const [posts, setPosts] = useState<IPost[]>([])
-  const [user, setUser] = useState<IUser>(tempUser)
+  const [user, setUser] = useState<IUser>()
+  const [bearer, setBearer] = useState<string>("")
 
   useEffect(() => {
     fetch(`${env.url}/posts`)
@@ -101,7 +106,12 @@ function App()
 
   return (
     <div className="blog-fe">
-      <UserContext.Provider value={{user: user}}>
+      <UserContext.Provider value={{
+        user: user, 
+        setUser: setUser, 
+        bearer: bearer, 
+        setBearer: setBearer
+      }}>
         <TopBar />
         <div className="middle">
           <div></div>

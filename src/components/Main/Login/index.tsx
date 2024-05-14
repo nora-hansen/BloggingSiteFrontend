@@ -1,12 +1,17 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import './Login.css'
 import { Link } from 'react-router-dom';
+import env from '../../../environment';
+import { genSaltSync, hashSync } from "bcrypt-ts";
+import { UserContext } from '../../../App';
 
 function Login() 
 {
+    const userContext = useContext(UserContext)
+
     const [userDetails, setUserDetails] = useState({
         email: "",
-        displayName: "",
+        password: ""
     })
 
     const handleChange = (event) => {
@@ -23,6 +28,32 @@ function Login()
 
     const handleSubmit = (event) => {
         event.preventDefault()
+
+        // TODO: IMPLEMENT LATER!! Passwords in db are currently not hashed, 
+        // so this will cause current users to not be able to login
+        //              vvvvvv
+        // const salt = genSaltSync(10);
+        // const hashedPassword = hashSync(userDetails.password, salt);
+        // setUserDetails({...userDetails, password: hashedPassword})
+
+        fetch(`${env.url}/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userDetails)
+        })
+        .then(response => response.json())
+        .then(data => userContext.setBearer(data.token))
+        .then(async () => {
+            const response = await fetch(`${env.url}/users?email=${userDetails.email}`);
+            const data = await response.json();
+            console.log(data)
+            return userContext.setUser(data[0]);
+        })
+        .catch(error => {
+            console.error(error)
+        })
     }
 
     return(

@@ -19,7 +19,6 @@ function Main()
     useEffect(() => {
         if (!location.pathname.startsWith('/user')) 
             {
-                console.log(`${location.pathname} starts with /user? ${location.pathname.startsWith('/user')}`)
                 setBgColor("#eeeeee")
             }
     }, [location])

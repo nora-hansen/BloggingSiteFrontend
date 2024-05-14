@@ -29,13 +29,12 @@ function SignUp()
         if(inputName === "iconurl") {
             setUserDetails({...userDetails, iconUrl: inputValue})
         }
-
-        console.log(`${event.target.value} - ${event.target.name}`)
-        console.log(userDetails)
     }
 
     const handleSubmit = (event) => {
         event.preventDefault()
+
+        
         fetch(`${env.url}/users`,   {
             method: "POST",
             headers: {
