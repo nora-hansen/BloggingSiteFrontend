@@ -52,10 +52,14 @@ function Create()
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${userContext.bearer}`
             },
-            body: JSON.stringify(post)
+            body: JSON.stringify({
+                title: post.title,
+                content: post.content,
+                visibility: post.visibility,
+                isDraft: post.isDraft
+            })
         })
     }
-
 
     if(userContext.bearer === "")
         return <Navigate to="/login" />

@@ -29,7 +29,6 @@ export interface IPost {
 export interface IUser {
   id: number,
   email: string,
-  password: string,
   displayName: string,
   bio: string,
   iconUrl: string,
@@ -59,7 +58,6 @@ const defaultUser: UserContextType = {
   {
     id: 1,
     email: "",
-    password: "",
     displayName: "",
     bio: "",
     iconUrl: "",

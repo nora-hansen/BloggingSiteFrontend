@@ -45,18 +45,15 @@ function Login()
         })
         .then(response => response.json())
         .then(data => userContext.setBearer(data.token))
-
-        if(userContext.bearer !== "") {
-            fetch(`${env.url}/users`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(userDetails)
-            })
-            .then(response => response.json())
-            .then(data => userContext.setUser(data))
-        }
+        .then(async () => {
+            const response = await fetch(`${env.url}/users?email=${userDetails.email}`);
+            const data = await response.json();
+            console.log(data)
+            return userContext.setUser(data[0]);
+        })
+        .catch(error => {
+            console.error(error)
+        })
     }
 
     return(
