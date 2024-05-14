@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import './Login.css'
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import env from '../../../environment';
 import { genSaltSync, hashSync } from "bcrypt-ts";
 import { UserContext } from '../../../App';
@@ -49,7 +49,7 @@ function Login()
             const response = await fetch(`${env.url}/users?email=${userDetails.email}`);
             const data = await response.json();
             console.log(data)
-            return userContext.setUser(data[0]);
+            userContext.setUser(data[0]);
         })
         .catch(error => {
             console.error(error)

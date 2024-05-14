@@ -46,6 +46,8 @@ function Create()
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        if(event.target.name ==="post") setPost({...post, isDraft: false})
+            else setPost({...post, isDraft: true})
         fetch(`${env.url}/posts`, {
             method: "POST",
             headers: {
@@ -55,7 +57,7 @@ function Create()
             body: JSON.stringify({
                 title: post.title,
                 content: post.content,
-                visibility: post.visibility,
+                visibility: Number(post.visibility),
                 isDraft: post.isDraft
             })
         })
