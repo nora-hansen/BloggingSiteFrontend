@@ -5,7 +5,7 @@ function ProfileNav()
 {
     return(
         <div className="profile-nav">
-            <Link to="/login">Sign in</Link>
+            <Link to="/login">Login</Link>
             <Link to="/signup">Sign up</Link>
             <Link to="/user/1"><img src="../hamster.jpg" alt="Placeholder image of a hamster on its back."></img></Link>
         </div>
