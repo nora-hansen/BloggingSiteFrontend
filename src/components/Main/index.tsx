@@ -10,6 +10,7 @@ import Profile from './Profile';
 import { useEffect, useState } from 'react';
 import EditProfile from './EditProfile';
 import Users from './Users';
+import Drafts from './Drafts';
 
 function Main()
 {
@@ -65,6 +66,10 @@ function Main()
                 <Route
                     path="/all-users"
                     element={<Users />}
+                />
+                <Route
+                    path="/drafts"
+                    element={<Drafts />}
                 />
             </Routes>
         </main>
