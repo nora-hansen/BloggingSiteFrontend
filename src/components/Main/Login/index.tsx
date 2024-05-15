@@ -48,7 +48,6 @@ function Login()
         .then(async () => {
             const response = await fetch(`${env.url}/users?email=${userDetails.email}`);
             const data = await response.json();
-            console.log(data)
             userContext.setUser(data[0]);
         })
         .catch(error => {
