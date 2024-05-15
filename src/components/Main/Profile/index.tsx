@@ -27,29 +27,32 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
 
     useEffect(() => {
         fetch(`${env.url}/users/${userId}`)
-            .then(response => response.json())
+            .then(response => response.json() )
             .then(data => setUser(data))
+
 
         fetch(`${env.url}/posts?userid=${userId}`)
             .then(response => response.json())
             .then(data => setPosts(data))
 
-        tempProfiles.map((profile) => {
-            if(user && user.profileId === profile.id)
-                {
-                    setProfile(profile)
-                    setBgColor(profile?.bgColor)
-                }
-            })
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    
-    if(!user || !posts)
-        {
-            return <p>Loading...</p>
-        }
+    useEffect(() => {
+        fetch(`${env.url}/profiles/${user?.profileId}`)
+            .then(response => response.json())
+            .then(data => setProfile(data))
+    }, [user])
+
+    useEffect(() => {
+        return setBgColor(profile?.bgColor)
+    }, [profile])
+
+    if(!user || !posts || !profile)
+    {
+        return <p>Loading...</p>
+    }
 
     if(!userId) {
         return <div>Cool 404 page</div>
