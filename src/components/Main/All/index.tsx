@@ -16,7 +16,7 @@ function All() {
             <h1>All posts</h1>
             <div className="post-list">
                 {postContext.posts.map((post, index) => 
-                    post.isDraft && 
+                    !post.isDraft && 
                         <Post key={index}
                         id={post.id}
                         title={post.title}
