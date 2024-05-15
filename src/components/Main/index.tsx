@@ -59,7 +59,7 @@ function Main()
                     />}
                 />
                 <Route
-                    path="/user/edit-profile"
+                    path="/edit-profile"
                     element={<EditProfile />}
                 />
                 <Route

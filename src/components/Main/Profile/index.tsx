@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import './Profile.css'
 import { IPost, IUser, PostContext, UserContext } from '../../../App'
 import Post from '../All/Post'
@@ -69,7 +69,9 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
                 style={{backgroundColor: profile?.postColor ?  profile?.postColor : "#FFFFFF", color:  profile?.fontColor ?  profile?.fontColor : "#000000"}} >
                     <p>{user?.bio}</p>
                 </div>
-                <button>Add Friend</button>
+                {Number(userId) == userContext.user?.id && <Link to="/edit-profile"><button>Edit profile</button></Link>}
+                {Number(userId) != userContext.user?.id && userContext.bearer != "" && <button>Add friend</button>}
+
             </div>
             <div className="profile-posts"
                 >
