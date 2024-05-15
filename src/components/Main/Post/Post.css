@@ -1,0 +1,22 @@
+.single-post {
+    display: flex;
+    flex-direction: row;
+    background-color: crimson;
+}
+
+.user-info {
+    background-color: rgb(100, 237, 123);
+}
+
+.user-info img {
+    width: 100px;
+    height: 100px;
+}
+
+.single-post-content {
+    background-color: rgb(125, 125, 255);
+}
+
+.single-post-content h1 {
+    font-size: larger;
+}
