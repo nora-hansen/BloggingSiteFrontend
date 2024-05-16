@@ -1,17 +1,20 @@
 import { Link, useParams } from 'react-router-dom';
 import './Post.css'
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import env from '../../../environment';
-import { IPost } from '../../../App';
+import { IPost, UserContext } from '../../../App';
 import { IUser } from '../All/Post';
 import PostContent from './PostContent';
 import CommentList from './CommentList';
 import UserInfo from './UserInfo';
+import CommentField from './CommentField';
 
 function Post() {
     const { postId } = useParams<{ postId?: string }>();
     const [post, setPost] = useState<IPost>()
     const [user, setUser] = useState<IUser>()
+    
+    const userContext = useContext(UserContext)
 
     useEffect(() => {
         fetch(`${env.url}/posts/${postId}`)
@@ -29,12 +32,16 @@ function Post() {
 
     return(
         <div className="single-post">
+            <div className="user-and-post">
             <UserInfo 
                 displayName={user.displayName}
                 iconUrl={user.iconUrl}
                 id={user.id} 
             />
             <PostContent title={post?.title} content={post.content} />
+            </div>
+            {userContext.bearer !== "" && 
+            <CommentField />}
             <CommentList postId={post?.id} />
         </div>
     )
