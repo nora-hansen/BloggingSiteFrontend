@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import EditProfile from './EditProfile';
 import Users from './Users';
 import Drafts from './Drafts';
+import Post from './Post';
 
 function Main()
 {
@@ -42,6 +43,10 @@ function Main()
                     element={<All />}
                 />
                 <Route
+                    path="/post/:postId"
+                    element={<Post />}
+                />
+                <Route
                     path="/create"
                     element={<Create />}
                 />
@@ -60,7 +65,7 @@ function Main()
                     />}
                 />
                 <Route
-                    path="/user/edit-profile"
+                    path="/edit-profile"
                     element={<EditProfile />}
                 />
                 <Route

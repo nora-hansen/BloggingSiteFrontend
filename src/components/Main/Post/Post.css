@@ -1,0 +1,13 @@
+.single-post {
+    display: flex;
+    flex-direction: column;
+}
+
+.single-post-content h1 {
+    font-size: larger;
+}
+
+.user-and-post {
+    display: flex;
+    flex-direction: row;
+}

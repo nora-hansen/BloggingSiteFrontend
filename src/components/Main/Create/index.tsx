@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import './Create.css'
 import { UserContext } from '../../../App'
-import { Navigate, redirect } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import env from '../../../environment'
 
 interface IPost {
@@ -46,8 +46,13 @@ function Create()
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        if(event.target.name ==="post") setPost({...post, isDraft: false})
-            else setPost({...post, isDraft: true})
+
+        if(event.target.id === "post") {
+            setPost({...post, isDraft: false})
+        } 
+        else { 
+            setPost({...post, isDraft: true})
+        }
         fetch(`${env.url}/posts`, {
             method: "POST",
             headers: {
@@ -58,7 +63,7 @@ function Create()
                 title: post.title,
                 content: post.content,
                 visibility: Number(post.visibility),
-                isDraft: post.isDraft
+                isDraft: event.target.id === "post" ? false : true
             })
         })
     }
@@ -89,11 +94,11 @@ function Create()
                             </div>
                         </fieldset>
                 </div>
-                <div className="create-post-buttons">
-                    <button name="create" value="draft">Save as draft</button>
-                    <button name="create" value="post">Post</button>
-                </div>
             </form>
+            <div className="create-post-buttons">
+                <button id="draft" onClick={handleSubmit} name="draft" value="draft">Save as draft</button>
+                <button id="post"  onClick={handleSubmit} name="post"  value="post"> Post</button>
+            </div>
 
         </div>
     )

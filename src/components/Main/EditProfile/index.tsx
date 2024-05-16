@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import './EditProfile.css'
+import { UserContext } from '../../../App'
+import env from '../../../environment'
 
 interface IStyle {
     bgColor: string,
@@ -9,14 +11,25 @@ interface IStyle {
 
 function EditProfile()
 {
+    const userContext = useContext(UserContext)
+
     const [style, setStyle] = useState<IStyle>({
-        bgColor: "#aaaaaa",
-        fontColor: "#000000",
-        postColor: "#FFFFFF"
+        bgColor: "",
+        fontColor: "",
+        postColor: ""
     })
 
-    const handleSubmit = () => {
-        alert("Thank you! Om nom")
+    const handleSubmit = (event) => {
+        event.preventDefault()
+
+        fetch(`${env.url}/profiles/${userContext.user?.profileId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${userContext.bearer}`
+            },
+            body: JSON.stringify(style)   
+        })
     }
 
     const handleChange = (event) => {
