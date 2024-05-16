@@ -4,6 +4,7 @@ import { UserContext } from '../../../../App'
 import { Link } from 'react-router-dom'
 import Bio from './Bio'
 import UserImageName from './UserImageName'
+import Buttons from './Buttons'
 
 function UserSideBar(
         user: {iconUrl: string, displayName: string, bio: string, postColor: string, fontColor: string,
@@ -15,8 +16,7 @@ function UserSideBar(
         <div className='profile-user-details'>
                 <UserImageName displayName={user.displayName} iconUrl={user.iconUrl} />
                 <Bio postColor={user.postColor} fontColor={user.fontColor} bio={user.bio}/>
-                {Number(user?.userId) == userContext.user?.id && <Link to="/edit-profile"><button>Edit profile</button></Link>}
-                {Number(user?.userId) != userContext.user?.id && userContext.bearer != "" && <button>Add friend</button>}
+                <Buttons userId={user.userId} />
             </div>
     )
 }
