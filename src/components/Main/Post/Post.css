@@ -1,11 +1,6 @@
 .single-post {
     display: flex;
     flex-direction: column;
-    background-color: crimson;
-}
-
-.single-post-content {
-    background-color: rgb(125, 125, 255);
 }
 
 .single-post-content h1 {
