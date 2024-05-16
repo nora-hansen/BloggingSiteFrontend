@@ -1,11 +1,10 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Post.css'
-import { UserContext } from '../../../../App';
 import { Link } from 'react-router-dom';
-import { DocumentMeta } from 'react-document-meta'
 
 import env from '../../../../environment'
 import CommentList from '../../Post/CommentList';
+import CommentField from '../../Post/CommentField';
 
 export interface IUser {
     id: number,
@@ -27,12 +26,13 @@ function Post(post: {
     isDraft: boolean}
     ) 
 {
-    const meta = {
-        title: 'BobLOG - All users',
-        description: 'All registered users on BobLOG'
-    }
 
     const [postingUser, setPostingUser] = useState<IUser>()
+    const [commentFieldActivate, setCommentFieldActivate] = useState<boolean>(false)
+
+    const handleCheck = () => {
+        setCommentFieldActivate(!commentFieldActivate)
+    }
 
     useEffect(() => {
         fetch(`${env.url}/users/${post.userID}`)
@@ -51,8 +51,12 @@ function Post(post: {
         <div className="post-item">
 
             <div className="post-user-details">
-                <Link to={`user/${postingUser.id}`}><img src={postingUser.iconUrl ? postingUser.iconUrl : "../hamster.jpg"} alt={`${postingUser.displayName}'s Profile picture`}></img></Link>
-                <Link to={`/user/${postingUser.id}`}><p>{postingUser.displayName ? postingUser.displayName : "Anonymous Hamster"}</p></Link>
+                <Link to={`user/${postingUser.id}`}>
+                    <img src={postingUser.iconUrl ? postingUser.iconUrl : "../hamster.jpg"} alt={`${postingUser.displayName}'s Profile picture`}></img>
+                </Link>
+                <Link to={`/user/${postingUser.id}`}>
+                    <p>{postingUser.displayName ? postingUser.displayName : "Anonymous Hamster"}</p>
+                </Link>
             </div>
             <div className="post-content-full">
                 <Link to={`/post/${post.id}`}>
@@ -60,6 +64,10 @@ function Post(post: {
                     <p>{post.content}</p>
                 </Link>
             </div>
+            <input type="checkbox" onChange={handleCheck}></input>
+            {commentFieldActivate && 
+                <CommentField postId={post.id} />
+            }
             <CommentList 
                 postId={post.id}
             />

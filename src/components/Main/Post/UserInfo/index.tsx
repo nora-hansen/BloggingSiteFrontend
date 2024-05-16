@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import './UserInfo.css'
-import { IUser } from '../../All/Post'
 
 function UserInfo(user: {  
     id: number,
