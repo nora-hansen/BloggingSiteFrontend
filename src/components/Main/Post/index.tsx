@@ -41,7 +41,7 @@ function Post() {
             <PostContent title={post?.title} content={post.content} />
             </div>
             {userContext.bearer !== "" && 
-            <CommentField />}
+            <CommentField postId={post?.id}/>}
             <CommentList postId={post?.id} />
         </div>
     )
