@@ -6,8 +6,6 @@ import Footer from './components/Footer'
 import Friends from './components/Friends'
 
 import tempFriends from './temp-friends'
-import tempUser from './temp-user'
-import tempUsers from './temp-multiple-users'
 import env from './environment'
 
 interface IFriend {

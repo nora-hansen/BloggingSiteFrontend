@@ -8,6 +8,7 @@ import tempProfiles from '../../../temp-profiles'
 import tempUsers from '../../../temp-multiple-users'
 
 import env from './../../../environment'
+import UserSideBar from './UserSideBar'
 
 interface IProfile {
     id: number, 
@@ -60,19 +61,10 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
 
     return(
         <div className="profile">
-            <div className='profile-user-details'>
-                <div className="profile-image-name">
-                    <img src={user?.iconUrl ? user?.iconUrl : "../hamster.jpg"}></img>
-                    <h1>{user?.displayName ? user?.displayName : "Anonymous Hamster"}</h1>
-                </div>
-                <div className="profile-bio"                 
-                style={{backgroundColor: profile?.postColor ?  profile?.postColor : "#FFFFFF", color:  profile?.fontColor ?  profile?.fontColor : "#000000"}} >
-                    <p>{user?.bio}</p>
-                </div>
-                {Number(userId) == userContext.user?.id && <Link to="/edit-profile"><button>Edit profile</button></Link>}
-                {Number(userId) != userContext.user?.id && userContext.bearer != "" && <button>Add friend</button>}
-
-            </div>
+            <UserSideBar
+                displayName={user?.displayName}
+                iconUrl={user?.iconUrl}
+                bio={user?.bio} postColor={profile?.postColor} fontColor={profile?.fontColor} userId={Number(userId)}            />
             <div className="profile-posts"
                 >
                 {posts.map((post, index) => 
