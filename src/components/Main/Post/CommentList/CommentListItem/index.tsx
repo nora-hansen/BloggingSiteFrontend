@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './CommentListItem.css'
-import { IUser } from '../..'
-import env from '../../../../../../environment'
+import { IUser } from '../../../All/Post'
+import env from '../../../../../environment'
 import { Link } from 'react-router-dom'
 
 function CommentListItem(comment: {

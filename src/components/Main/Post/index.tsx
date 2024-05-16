@@ -5,6 +5,8 @@ import env from '../../../environment';
 import { IPost } from '../../../App';
 import { IUser } from '../All/Post';
 import PostContent from './PostContent';
+import CommentList from './CommentList';
+import UserInfo from './UserInfo';
 
 function Post() {
     const { postId } = useParams<{ postId?: string }>();
@@ -27,11 +29,13 @@ function Post() {
 
     return(
         <div className="single-post">
-            <div className="user-info">
-                <img src={user.iconUrl}></img>
-                <Link to={`/user/${user.id}`}><p>{user.displayName}</p></Link>
-            </div>
+            <UserInfo 
+                displayName={user.displayName}
+                iconUrl={user.iconUrl}
+                id={user.id} 
+            />
             <PostContent title={post?.title} content={post.content} />
+            <CommentList postId={post?.id} />
         </div>
     )
 }

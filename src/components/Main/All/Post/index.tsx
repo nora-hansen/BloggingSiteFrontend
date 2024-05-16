@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { DocumentMeta } from 'react-document-meta'
 
 import env from '../../../../environment'
-import CommentList from './CommentList';
+import CommentList from '../../Post/CommentList';
 
 export interface IUser {
     id: number,
