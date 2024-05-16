@@ -63,11 +63,11 @@ function Post(post: {
                 <Link to={`user/${postingUser.id}`}><img src={postingUser.iconUrl ? postingUser.iconUrl : "../hamster.jpg"} alt={`${postingUser.displayName}'s Profile picture`}></img></Link>
                 <Link to={`/user/${postingUser.id}`}><p>{postingUser.displayName ? postingUser.displayName : "Anonymous Hamster"}</p></Link>
             </div>
-            <div className={style}
-                onClick={handleClick}
-            >
-                <Link to={`/post/${post.id}`}><h1>{post.title}</h1></Link>
-                <p>{post.content}</p>
+            <div className={style} onClick={handleClick}>
+                <Link to={`/post/${post.id}`}>
+                    <h1>{post.title}</h1>
+                    <p>{post.content}</p>
+                </Link>
             </div>
             <CommentList 
                 postId={post.id}
