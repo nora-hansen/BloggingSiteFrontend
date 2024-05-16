@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import env from '../../../environment';
 import { IPost } from '../../../App';
 import { IUser } from '../All/Post';
+import PostContent from './PostContent';
 
 function Post() {
     const { postId } = useParams<{ postId?: string }>();
@@ -22,17 +23,15 @@ function Post() {
             .then(data => setUser(data))
     }, [post])
 
+    if(!post || !user) return <p>Loading</p>
+
     return(
         <div className="single-post">
             <div className="user-info">
-                <img src={user?.iconUrl}></img>
-                <Link to={`/user/${user?.id}`}><p>{user?.displayName}</p></Link>
+                <img src={user.iconUrl}></img>
+                <Link to={`/user/${user.id}`}><p>{user.displayName}</p></Link>
             </div>
-            <div className="single-post-content">
-                <h1>{post?.title}</h1>
-                <p>{post?.content}</p>
-            </div>
-            <p></p>
+            <PostContent title={post?.title} content={post.content} />
         </div>
     )
 }
