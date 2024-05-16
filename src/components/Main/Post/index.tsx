@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import './Post.css'
 import { useContext, useEffect, useState } from 'react';
 import env from '../../../environment';
@@ -20,7 +20,7 @@ function Post() {
         fetch(`${env.url}/posts/${postId}`)
             .then(response => response.json())
             .then(data => setPost(data))
-    }, [])
+    }, [postId])
 
     useEffect(() => {
         fetch(`${env.url}/users/${post?.userID}`)
