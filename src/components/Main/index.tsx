@@ -10,6 +10,7 @@ import Profile from './Profile';
 import { useEffect, useState } from 'react';
 import EditProfile from './EditProfile';
 import Users from './Users';
+import Post from './Post';
 
 function Main()
 {
@@ -39,6 +40,10 @@ function Main()
                 <Route
                     path="/all"
                     element={<All />}
+                />
+                <Route
+                    path="/post/:postId"
+                    element={<Post />}
                 />
                 <Route
                     path="/create"
