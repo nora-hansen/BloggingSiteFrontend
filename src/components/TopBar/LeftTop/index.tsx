@@ -14,6 +14,8 @@ function LeftTop()
             <Link to="/all"><button aria-label="Navigate to all posts page">All</button></Link>
             <Link to="/create"><button aria-label="Navigate to create post page">Create</button></Link>
             <Link to="/all-users"><button aria-label="See a list of all users">Users</button></Link>
+            <Link to="/drafts"><button aria-label="See a list of all users">drafts</button></Link>
+
         </div>
     )
 }

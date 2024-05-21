@@ -13,7 +13,7 @@ function Drafts() {
         fetch(`${env.url}/posts?userid=${userContext.user?.id}&isdraft=true`)
         .then(response => response.json())
         .then(data => setDrafts(data))
-    }, [])
+        }, [drafts, userContext.user?.id])
 
     if(!userContext.user) <Navigate to="/login" />
     if (!drafts) return <p>Loading...</p>
@@ -21,7 +21,7 @@ function Drafts() {
     return(
         <div className="drafts">
             <h1>Drafts</h1>
-            <DraftList drafts={drafts}/>
+            {<DraftList drafts={drafts}/>}
         </div>
     )
 }
