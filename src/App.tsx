@@ -21,7 +21,9 @@ export interface IPost {
   postDate: string,
   userID: number,
   visibility: number,
-  isDraft: boolean
+  isDraft: boolean,
+  comments: IComment[],
+  postingUser: IUser
 }
 
 export interface IUser {
@@ -33,28 +35,31 @@ export interface IUser {
   profileId: number
 }
 
+export interface IComment {
+  id: number,
+  content: string,
+  commentDate: string,
+  userID: number,
+  postID: number
+}
+
 const defaultFriends: FriendsContextType = 
 {
   friends:
-  [  
-    {
-      id: 0,
-      name: "null",
-      iconUrl: "null"
-    }
-  ]
+  []
 }
 
 const defaultPosts: PostsContextType = 
 {
   posts:
-  []
+  [],
+  setPosts: () => {}
 }
 
 const defaultUser: UserContextType = {
   user: 
   {
-    id: 1,
+    id: 0,
     email: "",
     displayName: "",
     bio: "",
@@ -71,7 +76,8 @@ type FriendsContextType = {
 }
 
 type PostsContextType = {
-  posts: IPost[]
+  posts: IPost[],
+  setPosts: (value: IPost[]) => void
 }
 
 type UserContextType = {
@@ -113,7 +119,7 @@ function App()
         <TopBar />
         <div className="middle">
           <div></div>
-          <PostContext.Provider value={{posts: posts}}>
+          <PostContext.Provider value={{posts: posts, setPosts: setPosts}}>
             <Main />
           </PostContext.Provider>
           <FriendContext.Provider value={{friends: friends}}>

@@ -25,6 +25,7 @@ function All() {
                         userID={post.userID} 
                         visibility={post.visibility} 
                         isDraft={post.isDraft}     
+                        comments={post.comments}
                         />)
                 }
             </div>

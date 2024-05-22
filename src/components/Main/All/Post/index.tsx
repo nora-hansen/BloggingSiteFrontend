@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import env from '../../../../environment'
 import CommentList from '../../Post/CommentList';
 import CommentField from '../../Post/CommentField';
+import { IComment } from '../../../../App';
 
 export interface IUser {
     id: number,
@@ -23,7 +24,8 @@ function Post(post: {
     postDate: string,
     userID: number,
     visibility: number,
-    isDraft: boolean}
+    isDraft: boolean,
+    comments: IComment[]}
     ) 
 {
 
@@ -39,10 +41,6 @@ function Post(post: {
             .then(response => response.json())
             .then(data => setPostingUser(data))
     }, [post.userID])
-
-    // TODO: Reenable this. I had to remove it because the posts in the backend were wrongly set to isDraft
-    // if(post.isDraft || post.visibility === 3) 
-    //     return <></>
 
     if(postingUser?.id == undefined)
         return <p>Loading user...</p>
@@ -68,9 +66,11 @@ function Post(post: {
             {commentFieldActivate && 
                 <CommentField postId={post.id} />
             }
+            {/* 
+                Clean this up!!!!!!
             <CommentList 
-                postId={post.id}
-            />
+                comments={post.comments}
+            /> */}
             <div className="post-info">
                 <p>{post.postDate}</p>
             </div>
