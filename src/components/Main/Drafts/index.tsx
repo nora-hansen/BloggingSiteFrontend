@@ -10,12 +10,15 @@ function Drafts() {
     const [drafts, setDrafts] = useState<IPost[]>()
 
     useEffect(() => {
-        fetch(`${env.url}/posts?userid=${userContext.user?.id}&isdraft=true`)
-        .then(response => response.json())
-        .then(data => setDrafts(data))
+        if (userContext.bearer !== "")
+            fetch(`${env.url}/posts?userid=${userContext.user?.id}&isdraft=true`)
+            .then(response => response.json())
+            .then(data => setDrafts(data))
     }, [userContext.user?.id])
 
-    if (!userContext.user) <Navigate to="/login" />
+    if (userContext.bearer === "") {
+        return <Navigate to="/login" />
+    }
     if (!drafts) return <p>Loading...</p>
 
     return(
