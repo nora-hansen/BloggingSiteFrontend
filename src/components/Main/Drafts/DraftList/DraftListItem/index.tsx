@@ -1,3 +1,4 @@
+import DraftButtonPanel from './DraftButtonPanel'
 import './DraftListItem.css'
 
 function DraftListItem(draft: {    
@@ -11,6 +12,8 @@ function DraftListItem(draft: {
     return(
         <div className="draft-list-item">
             <h1>{draft.title}</h1>
+            <p>{draft.content}</p>
+            <DraftButtonPanel draftId={draft.id}></DraftButtonPanel>
         </div>
     )
 }

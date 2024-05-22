@@ -6,7 +6,6 @@ import { UserContext } from '../../../App';
 
 function LeftTop()
 {
-    const userContext = useContext(UserContext)
 
     return(
         <div className="left-top">

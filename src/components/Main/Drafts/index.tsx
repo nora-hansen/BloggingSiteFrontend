@@ -13,7 +13,7 @@ function Drafts() {
         fetch(`${env.url}/posts?userid=${userContext.user?.id}&isdraft=true`)
         .then(response => response.json())
         .then(data => setDrafts(data))
-        }, [drafts, userContext.user?.id])
+    }, [userContext.user?.id])
 
     if(!userContext.user) <Navigate to="/login" />
     if (!drafts) return <p>Loading...</p>
