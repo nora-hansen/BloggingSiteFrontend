@@ -13,25 +13,25 @@ function Post() {
     const { postId } = useParams<{ postId?: string }>();
     const [post, setPost] = useState<IPost>()
     const [user, setUser] = useState<IUser>()
-    const [loadComplete, setLoadComplete] = useState<boolean>(false)
+    const [userLoadComplete, setUserLoadComplete] = useState<boolean>(false)
+    const [commentsLoadComplete, setCommentsLoadComplete] = useState<boolean>(false)
     
     const userContext = useContext(UserContext)
     const postContext = useContext(PostContext)
 
     useEffect(() => {
         setPost(postContext.posts.find(p => p.id === Number(postId)))
-        console.log("I set it", post)
 
-        if(post && post.comments === undefined && !loadComplete)
+        if(post && !commentsLoadComplete)
             fetch(`${env.url}/comments?post=${postId}`)
             .then(response => response.json())
             .then(data => {
                 postContext.setPosts(postContext.posts.map(p => p.id === Number(postId) ? {...p, comments: data } : p))
                 console.log("Comments", post.comments)
-                setLoadComplete(true)
+                setCommentsLoadComplete(true)
             })
 
-        if(post && post.postingUser === undefined && !loadComplete)
+        if(post && !userLoadComplete)
             fetch(`${env.url}/users/${post.userID}`)
                 .then(response => response.json())
                 .then(data => {
@@ -43,13 +43,11 @@ function Post() {
                         iconUrl: data.iconUrl,
                         profileId: data.profileId
                     } } : p))
-                    console.log("User", post.postingUser)
-                    setLoadComplete(true)
+                    setUserLoadComplete(true)
                 })
-    }, [post, loadComplete])
+    }, [commentsLoadComplete, post, postContext, postId, userLoadComplete])
 
     if(post?.postingUser === undefined || post?.comments === undefined) {
-        console.log("Where?", post)
         return <p>Loading</p>
     }
 
@@ -66,9 +64,8 @@ function Post() {
             {userContext.bearer !== "" && 
             <CommentField 
                 postId={post.id}
-                comments={post.comments}
             />}
-            <CommentList comments={post?.comments} />
+            <CommentList comments={post.comments} />
         </div>
     )
 }
