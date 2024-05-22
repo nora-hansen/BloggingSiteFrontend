@@ -15,7 +15,7 @@ function Drafts() {
         .then(data => setDrafts(data))
     }, [userContext.user?.id])
 
-    if(!userContext.user) <Navigate to="/login" />
+    if (!userContext.user) <Navigate to="/login" />
     if (!drafts) return <p>Loading...</p>
 
     return(
