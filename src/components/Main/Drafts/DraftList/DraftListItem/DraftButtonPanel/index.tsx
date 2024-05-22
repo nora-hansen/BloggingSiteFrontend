@@ -21,6 +21,18 @@ function DraftButtonPanel(draft: {draftId: number}) {
                 }
             )
         }
+
+        if (event.target.name === "delete") {
+            if (confirm("Are you sure you want to delete this draft?")) {
+                fetch(`${env.url}/posts/${draft.draftId}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${userContext.bearer}`
+                    }
+                })
+            }
+        }
     }
 
     return(
