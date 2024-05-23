@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
 import './CommentList.css'
-import env from '../../../../environment'
 import CommentListItem from './CommentListItem';
 import { IComment, PostContext } from '../../../../App';
 

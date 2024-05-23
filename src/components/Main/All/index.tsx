@@ -26,6 +26,7 @@ function All() {
                         visibility={post.visibility} 
                         isDraft={post.isDraft}     
                         comments={post.comments}
+                        postingUser={post.postingUser}
                         />)
                 }
             </div>
