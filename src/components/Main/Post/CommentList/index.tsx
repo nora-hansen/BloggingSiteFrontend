@@ -12,7 +12,6 @@ function CommentList(post: {comments: IComment[]}) {
     }
 
     if(post.comments === null) {
-        console.log("None")
         return <></>
     }
 

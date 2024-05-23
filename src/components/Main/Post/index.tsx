@@ -27,7 +27,6 @@ function Post() {
             .then(response => response.json())
             .then(data => {
                 postContext.setPosts(postContext.posts.map(p => p.id === Number(postId) ? {...p, comments: data } : p))
-                console.log("Comments", post.comments)
                 setCommentsLoadComplete(true)
             })
 

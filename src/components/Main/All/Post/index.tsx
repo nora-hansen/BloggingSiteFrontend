@@ -41,7 +41,8 @@ function Post(post: {
 
     // TODO: HERE!!
     useEffect(() => {
-        if(post && !userLoadComplete)
+        console.log("before", post)
+        if(post.postingUser === undefined && !userLoadComplete)
             fetch(`${env.url}/users/${post.userID}`)
                 .then(response => response.json())
                 .then(data => {
@@ -56,19 +57,22 @@ function Post(post: {
                     setUserLoadComplete(true)
                 })
         
-        if(post && !commentsLoadComplete)
+        if(!commentsLoadComplete)
             fetch(`${env.url}/comments?post=${post.id}`)
                 .then(response => response.json())
                 .then(data => {
                     postContext.setPosts(postContext.posts.map(p => p.id === post.id ? {...p, comments: data} : p))
                     console.log("comments", data)
                     setCommentsLoadComplete(true)
+                    postContext.posts.map(p => p.id === post.id ? console.log("scoobert doobert", p.comments) : <></>)
                 })
 
+        // I'm already doing this above but if i take it away everything falls apart...
+        // And yes I changed the postingUser references below
         fetch(`${env.url}/users/${post.userID}`)
             .then(response => response.json())
             .then(data => setPostingUser(data))
-    }, [commentsLoadComplete, post, post.userID, postContext, userLoadComplete])
+    }, [commentsLoadComplete, userLoadComplete])
 
     if(postingUser?.id == undefined)
         return <img src="https://media4.giphy.com/media/yaUG0KDAcIcWA/200w.gif?cid=6c09b952gl1vqnji38xq9mr8ekzyllm3j7521006dg8q7c7x&ep=v1_gifs_search&rid=200w.gif&ct=g"></img>
@@ -94,6 +98,7 @@ function Post(post: {
             {commentFieldActivate && 
                 <CommentField postId={post.id} />
             }
+            {/* They don't show up..? But they're loaded... */}
             <CommentList 
                 comments={post.comments}
             />
