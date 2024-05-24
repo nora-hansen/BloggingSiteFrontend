@@ -47,6 +47,7 @@ function Login()
                 .then(response => response.json())
                 .then(data => {
                     userContext.setBearer(data.token)
+                    localStorage.setItem("bearer", data.token)
                 })
                 // .then(async () => {
                 //     if (userContext.bearer !== "") {
