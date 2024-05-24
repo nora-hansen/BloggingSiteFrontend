@@ -48,15 +48,15 @@ function EditProfile()
                 <div className="profile-colors">
                     <label htmlFor="bgColor">
                         Background color
-                        <input type="text" name="bgColor" placeholder="#aaaaaa" onChange={handleChange}></input>
+                        <input type="color" name="bgColor" placeholder="#aaaaaa" onChange={handleChange}></input>
                     </label>
                     <label htmlFor="fontColor">
                         Font color
-                        <input type="text" name="fontColor" placeholder="#000000" onChange={handleChange}></input>
+                        <input type="color" name="fontColor" placeholder="#000000" onChange={handleChange}></input>
                     </label>
                     <label htmlFor="postColor">
                         Post color
-                        <input type="text" name="postColor" placeholder="#FFFFFF" onChange={handleChange}></input>
+                        <input type="color" name="postColor" placeholder="#FFFFFF" onChange={handleChange}></input>
                     </label>
                 </div>
                 <div className="profile-bio-edit">
