@@ -1,37 +1,31 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './CommentList.css'
-import env from '../../../../environment'
 import CommentListItem from './CommentListItem';
+import { IComment, PostContext } from '../../../../App';
 
-interface IComment {
-    id: number,
-    content: string
-    commentDate: string,
-    userID: number, 
-    postID: number
-}
 
-function CommentList(post: {postId: number}) {
-    const [comments, setComments] = useState<IComment[]>()
+function CommentList(post: {comments: IComment[]}) {
+    const postContext = useContext(PostContext)
 
-    useEffect(() => {
-        fetch(`${env.url}/comments?post=${post.postId}`)
-        .then(response => response.json())
-        .then(data => setComments(data))
-    }, [post.postId])
+    if (post.comments === undefined) {
+        return <img src="https://media4.giphy.com/media/yaUG0KDAcIcWA/200w.gif?cid=6c09b952gl1vqnji38xq9mr8ekzyllm3j7521006dg8q7c7x&ep=v1_gifs_search&rid=200w.gif&ct=g"></img>
+    }
 
-    if(!comments) return <p>Loading...</p>
+    if(post.comments === null) {
+        return <></>
+    }
 
     return(
         <div className="comment-list">
-            {comments.map((comment, index) => 
+            {post.comments.map((comment, index) => 
             <CommentListItem 
             key={index}
             id={comment.id}
             content={comment.content}
             commentDate={comment.commentDate}
             userID={comment.userID}
-            postId={comment.postID}
+            postID={comment.postID}
+            commentingUser={comment.commentingUser}
             />)}
         </div>
     )

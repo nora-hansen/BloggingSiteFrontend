@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './Post.css'
 import { Link } from 'react-router-dom';
 
 import env from '../../../../environment'
 import CommentList from '../../Post/CommentList';
 import CommentField from '../../Post/CommentField';
+import { IComment, PostContext } from '../../../../App';
 
 export interface IUser {
     id: number,
     email: string,
-    password: string,
     displayName: string,
     bio: string,
     iconUrl: string,
@@ -23,29 +23,46 @@ function Post(post: {
     postDate: string,
     userID: number,
     visibility: number,
-    isDraft: boolean}
-    ) 
+    isDraft: boolean,
+    comments: IComment[],
+    postingUser: IUser
+})
 {
-
-    const [postingUser, setPostingUser] = useState<IUser>()
     const [commentFieldActivate, setCommentFieldActivate] = useState<boolean>(false)
+    const postContext = useContext(PostContext)
+    const [postingUser, setPostingUser] = useState<IUser>(post.postingUser)
 
     const handleCheck = () => {
         setCommentFieldActivate(!commentFieldActivate)
     }
 
+    // TODO: HERE!!
     useEffect(() => {
-        fetch(`${env.url}/users/${post.userID}`)
-            .then(response => response.json())
-            .then(data => setPostingUser(data))
-    }, [post.userID])
+        if(post.postingUser === undefined)
+            fetch(`${env.url}/users/${post.userID}`)
+                .then(response => response.json())
+                .then(data => {
+                    setPostingUser({
+                        id: data.id,
+                        email: data.email,
+                        displayName: data.displayName,
+                        bio: "", // To be added to backend
+                        iconUrl: data.iconUrl,
+                        profileId: data.profileId
+                    })
+                    postContext.setPosts(postContext.posts.map(p => p.id === post.id ? {...p, postingUser: {
+                        id: data.id,
+                        email: data.email,
+                        displayName: data.displayName,
+                        bio: "", // To be added to backend
+                        iconUrl: data.iconUrl,
+                        profileId: data.profileId
+                    }} : p))
+                })
+    }, [])
 
-    // TODO: Reenable this. I had to remove it because the posts in the backend were wrongly set to isDraft
-    // if(post.isDraft || post.visibility === 3) 
-    //     return <></>
-
-    if(postingUser?.id == undefined)
-        return <p>Loading user...</p>
+    if(postingUser === undefined)
+        return <img src="https://media4.giphy.com/media/yaUG0KDAcIcWA/200w.gif?cid=6c09b952gl1vqnji38xq9mr8ekzyllm3j7521006dg8q7c7x&ep=v1_gifs_search&rid=200w.gif&ct=g"></img>
 
     return(
         <div className="post-item">
@@ -69,7 +86,7 @@ function Post(post: {
                 <CommentField postId={post.id} />
             }
             <CommentList 
-                postId={post.id}
+                comments={post.comments}
             />
             <div className="post-info">
                 <p>{post.postDate}</p>

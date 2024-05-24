@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react'
 import './Create.css'
-import { UserContext } from '../../../App'
+import { PostContext, UserContext } from '../../../App'
 import { Navigate } from 'react-router-dom'
 import env from '../../../environment'
 
@@ -26,6 +26,7 @@ interface IPost {
 function Create()
 {
     const userContext = useContext(UserContext)
+    const postContext = useContext(PostContext)
 
     const [post, setPost] = useState<IPost>(defaultPost)
 
@@ -49,10 +50,12 @@ function Create()
 
         if(event.target.id === "post") {
             setPost({...post, isDraft: false})
+            postContext.setPosts([...postContext.posts, post])
         } 
         else { 
             setPost({...post, isDraft: true})
         }
+        
         fetch(`${env.url}/posts`, {
             method: "POST",
             headers: {
