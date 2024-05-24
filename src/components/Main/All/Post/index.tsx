@@ -38,7 +38,7 @@ function Post(post: {
 
     // TODO: HERE!!
     useEffect(() => {
-        if(postingUser === undefined)
+        if(post.postingUser === undefined)
             fetch(`${env.url}/users/${post.userID}`)
                 .then(response => response.json())
                 .then(data => {
@@ -50,8 +50,15 @@ function Post(post: {
                         iconUrl: data.iconUrl,
                         profileId: data.profileId
                     })
+                    postContext.setPosts(postContext.posts.map(p => p.id === post.id ? {...p, postingUser: {
+                        id: data.id,
+                        email: data.email,
+                        displayName: data.displayName,
+                        bio: "", // To be added to backend
+                        iconUrl: data.iconUrl,
+                        profileId: data.profileId
+                    }} : p))
                 })
-                .then(() => postContext.setPosts(postContext.posts.map(p => p.id === post.id ? {...post, postingUser: postingUser} : p)))
                 .then(() => console.log("Load"))
     }, [])
 
