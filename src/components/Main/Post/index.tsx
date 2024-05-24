@@ -11,7 +11,7 @@ import CommentField from './CommentField';
 function Post() {
     const { postId } = useParams<{ postId?: string }>();
     const [post, setPost] = useState<IPost>()
-    const [userLoadComplete, setUserLoadComplete] = useState<boolean>(false)
+    // const [userLoadComplete, setUserLoadComplete] = useState<boolean>(false)
     
     const userContext = useContext(UserContext)
     const postContext = useContext(PostContext)
@@ -19,7 +19,7 @@ function Post() {
     useEffect(() => {
         setPost(postContext.posts.find(p => p.id === Number(postId)))
 
-        if(post && post.postingUser === undefined && !userLoadComplete)
+        if(post && post.postingUser === undefined)
             fetch(`${env.url}/users/${post.userID}`)
                 .then(response => response.json())
                 .then(data => {
@@ -32,7 +32,7 @@ function Post() {
                         profileId: data.profileId
                     } } : p))
                 })
-    }, [post, postContext, postId, userLoadComplete])
+    }, [post, postContext, postId])
 
     if(post?.postingUser === undefined) {
         return <img src="https://media4.giphy.com/media/yaUG0KDAcIcWA/200w.gif?cid=6c09b952gl1vqnji38xq9mr8ekzyllm3j7521006dg8q7c7x&ep=v1_gifs_search&rid=200w.gif&ct=g"></img>

@@ -13,6 +13,7 @@ function Login()
         email: "",
         password: ""
     })
+    const [successfulLogin, setSuccessfulLogin] = useState<boolean>(false)
 
     const handleChange = (event) => {
         const inputValue = event.target.value
@@ -42,17 +43,29 @@ function Login()
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(userDetails)
-        })
-        .then(response => response.json())
-        .then(data => userContext.setBearer(data.token))
-        .then(async () => {
-            const response = await fetch(`${env.url}/users?email=${userDetails.email}`);
-            const data = await response.json();
-            userContext.setUser(data[0]);
-        })
-        .catch(error => {
-            console.error(error)
-        })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    userContext.setBearer(data.token)
+                })
+                // .then(async () => {
+                //     if (userContext.bearer !== "") {
+                //         const response = await fetch(`${env.url}/users?email=${userDetails.email}`);
+                //         const data = await response.json();
+                //         userContext.setUser(data[0]);
+                //     }
+                // })
+                .catch(error => {
+                    console.error(error)
+                })
+    }
+
+    if (userContext.bearer !== "")
+    {
+        fetch(`${env.url}/users?email=${userDetails.email}`)
+            .then(response => response.json())
+            .then(data => userContext.setUser(data[0]))
+        return <Navigate to="/" />
     }
 
     return(

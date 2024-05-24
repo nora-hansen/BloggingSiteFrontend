@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import EditProfile from './EditProfile';
 import Users from './Users';
 import Post from './Post';
+import Signout from './Signout';
 
 function Main()
 {
@@ -70,6 +71,10 @@ function Main()
                 <Route
                     path="/all-users"
                     element={<Users />}
+                />
+                <Route
+                    path="/signout"
+                    element={<Signout />}
                 />
             </Routes>
         </main>
