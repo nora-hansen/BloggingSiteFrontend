@@ -40,7 +40,8 @@ export interface IComment {
   content: string,
   commentDate: string,
   userID: number,
-  postID: number
+  postID: number,
+  commentingUser: IUser
 }
 
 const defaultFriends: FriendsContextType = 

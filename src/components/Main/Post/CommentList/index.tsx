@@ -25,6 +25,7 @@ function CommentList(post: {comments: IComment[]}) {
             commentDate={comment.commentDate}
             userID={comment.userID}
             postID={comment.postID}
+            commentingUser={comment.commentingUser}
             />)}
         </div>
     )

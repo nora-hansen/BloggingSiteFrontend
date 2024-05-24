@@ -59,7 +59,6 @@ function Post(post: {
                         profileId: data.profileId
                     }} : p))
                 })
-                .then(() => console.log("Load"))
     }, [])
 
     if(postingUser === undefined)

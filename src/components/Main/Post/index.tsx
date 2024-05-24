@@ -32,7 +32,6 @@ function Post() {
                         profileId: data.profileId
                     } } : p))
                 })
-        if (!post) return <Navigate to="/"/>
     }, [post, postContext, postId, userLoadComplete])
 
     if(post?.postingUser === undefined) {
