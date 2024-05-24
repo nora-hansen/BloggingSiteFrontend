@@ -10,7 +10,6 @@ import { IComment, PostContext } from '../../../../App';
 export interface IUser {
     id: number,
     email: string,
-    password: string,
     displayName: string,
     bio: string,
     iconUrl: string,
@@ -29,11 +28,9 @@ function Post(post: {
     postingUser: IUser
 })
 {
-    const [postingUser, setPostingUser] = useState<IUser>()
     const [commentFieldActivate, setCommentFieldActivate] = useState<boolean>(false)
-    const [userLoadComplete, setUserLoadComplete] = useState<boolean>(false)
-    const [commentsLoadComplete, setCommentsLoadComplete] = useState<boolean>(false)
     const postContext = useContext(PostContext)
+    const [postingUser, setPostingUser] = useState<IUser>(post.postingUser)
 
     const handleCheck = () => {
         setCommentFieldActivate(!commentFieldActivate)
@@ -41,40 +38,24 @@ function Post(post: {
 
     // TODO: HERE!!
     useEffect(() => {
-        console.log("before", post)
-        if(post.postingUser === undefined && !userLoadComplete)
+        if(postingUser === undefined)
             fetch(`${env.url}/users/${post.userID}`)
                 .then(response => response.json())
                 .then(data => {
-                    postContext.setPosts(postContext.posts.map(p => p.id === post.id ? {...p, postingUser: {
+                    setPostingUser({
                         id: data.id,
                         email: data.email,
                         displayName: data.displayName,
                         bio: "", // To be added to backend
                         iconUrl: data.iconUrl,
                         profileId: data.profileId
-                    } } : p))
-                    setUserLoadComplete(true)
+                    })
                 })
-        
-        if(!commentsLoadComplete)
-            fetch(`${env.url}/comments?post=${post.id}`)
-                .then(response => response.json())
-                .then(data => {
-                    postContext.setPosts(postContext.posts.map(p => p.id === post.id ? {...p, comments: data} : p))
-                    console.log("comments", data)
-                    setCommentsLoadComplete(true)
-                    postContext.posts.map(p => p.id === post.id ? console.log("scoobert doobert", p.comments) : <></>)
-                })
+                .then(() => postContext.setPosts(postContext.posts.map(p => p.id === post.id ? {...post, postingUser: postingUser} : p)))
+                .then(() => console.log("Load"))
+    }, [])
 
-        // I'm already doing this above but if i take it away everything falls apart...
-        // And yes I changed the postingUser references below
-        fetch(`${env.url}/users/${post.userID}`)
-            .then(response => response.json())
-            .then(data => setPostingUser(data))
-    }, [commentsLoadComplete, userLoadComplete])
-
-    if(postingUser?.id == undefined)
+    if(postingUser === undefined)
         return <img src="https://media4.giphy.com/media/yaUG0KDAcIcWA/200w.gif?cid=6c09b952gl1vqnji38xq9mr8ekzyllm3j7521006dg8q7c7x&ep=v1_gifs_search&rid=200w.gif&ct=g"></img>
 
     return(
@@ -98,7 +79,6 @@ function Post(post: {
             {commentFieldActivate && 
                 <CommentField postId={post.id} />
             }
-            {/* They don't show up..? But they're loaded... */}
             <CommentList 
                 comments={post.comments}
             />
