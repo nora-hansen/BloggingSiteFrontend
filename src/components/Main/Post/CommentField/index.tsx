@@ -1,11 +1,12 @@
 import { useContext, useState } from 'react'
 import './CommentField.css'
 import env from '../../../../environment'
-import { UserContext } from '../../../../App'
+import { PostContext, UserContext } from '../../../../App'
 
 function CommentField(post: {postId: number}) {
     const [comment, setComment] = useState<string>("")
     const userContext = useContext(UserContext)
+    const postContext = useContext(PostContext)
 
     const handleChange = (event) => {
         setComment(event.target.value)
@@ -28,6 +29,11 @@ function CommentField(post: {postId: number}) {
                 postID: post.postId
             })
         })
+        .then(response => response.json())
+        .then(data => postContext.setPosts(postContext.posts.map(p => p.id === post.postId 
+            ? {...p, comments: [...p.comments, data]} : p)
+        ))
+        setComment("")
     }
 
     return(
@@ -37,6 +43,7 @@ function CommentField(post: {postId: number}) {
                 id="comment-field-textarea" 
                 name="commentinput"
                 placeholder="Write a reply..." 
+                value={comment}
                 onChange={handleChange}>
             </input>
             <button onClick={handleClick}>Add comment</button>
