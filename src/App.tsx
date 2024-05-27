@@ -32,7 +32,8 @@ export interface IUser {
   displayName: string,
   bio: string,
   iconUrl: string,
-  profileId: number
+  profileId: number,
+  friends: IUser[]
 }
 
 export interface IComment {
