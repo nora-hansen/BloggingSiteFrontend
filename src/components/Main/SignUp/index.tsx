@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import './SignUp.css'
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import env from '../../../environment'
 
 function SignUp()
 {
+    const navigate = useNavigate();
+
     const [userDetails, setUserDetails] = useState({
         email: "",
         password: "",
@@ -33,7 +35,6 @@ function SignUp()
 
     const handleSubmit = (event) => {
         event.preventDefault()
-
         
         fetch(`${env.url}/users`,   {
             method: "POST",
@@ -41,7 +42,17 @@ function SignUp()
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(userDetails)
-        })
+            })
+            .then(response => {
+                if (response.status !== 201) {
+                    console.log("I throw because status is", response.status)
+                    throw new Error(`${response.status}`)
+                }
+
+                console.log("I should redirect because", response.status)
+                navigate('/login')
+
+            })
             .catch((error) => {
                 console.log(error)
             })

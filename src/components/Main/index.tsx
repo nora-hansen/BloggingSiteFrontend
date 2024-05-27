@@ -12,6 +12,7 @@ import EditProfile from './EditProfile';
 import Users from './Users';
 import Drafts from './Drafts';
 import Post from './Post';
+import Signout from './Signout';
 
 function Main()
 {
@@ -75,6 +76,10 @@ function Main()
                 <Route
                     path="/drafts"
                     element={<Drafts />}
+                />
+                <Route
+                    path="/signout"
+                    element={<Signout />}
                 />
             </Routes>
         </main>

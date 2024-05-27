@@ -21,7 +21,9 @@ export interface IPost {
   postDate: string,
   userID: number,
   visibility: number,
-  isDraft: boolean
+  isDraft: boolean,
+  comments: IComment[],
+  postingUser: IUser
 }
 
 export interface IUser {
@@ -33,28 +35,32 @@ export interface IUser {
   profileId: number
 }
 
+export interface IComment {
+  id: number,
+  content: string,
+  commentDate: string,
+  userID: number,
+  postID: number,
+  commentingUser: IUser
+}
+
 const defaultFriends: FriendsContextType = 
 {
   friends:
-  [  
-    {
-      id: 0,
-      name: "null",
-      iconUrl: "null"
-    }
-  ]
+  []
 }
 
 const defaultPosts: PostsContextType = 
 {
   posts:
-  []
+  [],
+  setPosts: () => {}
 }
 
 const defaultUser: UserContextType = {
   user: 
   {
-    id: 1,
+    id: 0,
     email: "",
     displayName: "",
     bio: "",
@@ -71,7 +77,8 @@ type FriendsContextType = {
 }
 
 type PostsContextType = {
-  posts: IPost[]
+  posts: IPost[],
+  setPosts: (value: IPost[]) => void
 }
 
 type UserContextType = {
@@ -99,7 +106,7 @@ function App()
   }, [])
 
   if(posts.length === 0) {
-    return <p>Loading posts...</p>
+    return <img src="https://media4.giphy.com/media/yaUG0KDAcIcWA/200w.gif?cid=6c09b952gl1vqnji38xq9mr8ekzyllm3j7521006dg8q7c7x&ep=v1_gifs_search&rid=200w.gif&ct=g"></img>
   }
 
   return (
@@ -113,7 +120,7 @@ function App()
         <TopBar />
         <div className="middle">
           <div></div>
-          <PostContext.Provider value={{posts: posts}}>
+          <PostContext.Provider value={{posts: posts, setPosts: setPosts}}>
             <Main />
           </PostContext.Provider>
           <FriendContext.Provider value={{friends: friends}}>
