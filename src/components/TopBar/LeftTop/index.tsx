@@ -1,13 +1,9 @@
-import { useContext } from 'react';
 import './LeftTop.css'
 
 import { Link } from 'react-router-dom';
-import { UserContext } from '../../../App';
 
 function LeftTop()
 {
-    const userContext = useContext(UserContext)
-
     return(
         <div className="left-top">
             <Link to="/"><button aria-label="Navigate to home page">Home</button></Link>

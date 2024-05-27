@@ -1,12 +1,13 @@
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import './Post.css'
 import { useContext, useEffect, useState } from 'react';
 import env from '../../../environment';
-import { IPost, PostContext, UserContext } from '../../../App';
+import { PostContext, UserContext } from '../../../App';
 import PostContent from './PostContent';
 import CommentList from './CommentList';
 import UserInfo from './UserInfo';
 import CommentField from './CommentField';
+import { IPost } from '../../../types';
 
 function Post() {
     const { postId } = useParams<{ postId?: string }>();
@@ -18,8 +19,10 @@ function Post() {
 
     useEffect(() => {
         setPost(postContext.posts.find(p => p.id === Number(postId)))
+        console.log("Post:", post)
 
         if(post && post.postingUser === undefined)
+            {
             fetch(`${env.url}/users/${post.userID}`)
                 .then(response => response.json())
                 .then(data => {
@@ -32,9 +35,11 @@ function Post() {
                         profileId: data.profileId
                     } } : p))
                 })
+                console.log("Good evening")
+            }
     }, [post, postContext, postId])
 
-    if(post?.postingUser === undefined) {
+    if(post?.postingUser === undefined || postContext.posts === undefined) {
         return <img src="https://media4.giphy.com/media/yaUG0KDAcIcWA/200w.gif?cid=6c09b952gl1vqnji38xq9mr8ekzyllm3j7521006dg8q7c7x&ep=v1_gifs_search&rid=200w.gif&ct=g"></img>
     }
 

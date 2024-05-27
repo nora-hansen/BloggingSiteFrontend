@@ -1,11 +1,9 @@
-import { useContext, useEffect, useState } from 'react';
 import './CommentList.css'
 import CommentListItem from './CommentListItem';
-import { IComment, PostContext } from '../../../../App';
+import { IComment } from '../../../../types';
 
 
 function CommentList(post: {comments: IComment[]}) {
-    const postContext = useContext(PostContext)
 
     if (post.comments === undefined) {
         return <img src="https://media4.giphy.com/media/yaUG0KDAcIcWA/200w.gif?cid=6c09b952gl1vqnji38xq9mr8ekzyllm3j7521006dg8q7c7x&ep=v1_gifs_search&rid=200w.gif&ct=g"></img>

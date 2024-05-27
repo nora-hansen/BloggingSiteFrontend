@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import './CommentListItem.css'
-import { IUser } from '../../../All/Post'
+import { IUser } from '../../../../../types'
 import env from '../../../../../environment'
 import { Link } from 'react-router-dom'
 import { PostContext } from '../../../../../App'

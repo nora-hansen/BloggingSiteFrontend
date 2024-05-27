@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './SignUp.css'
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import env from '../../../environment'
 

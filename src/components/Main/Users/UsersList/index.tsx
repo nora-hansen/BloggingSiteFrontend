@@ -2,8 +2,8 @@ import './UsersList.css'
 import env from '../../../../environment'
 import { useEffect, useState } from 'react'
 
-import { IUser } from '../../All/Post'
 import UsersListItem from './UsersListItem'
+import { IUser } from '../../../../types'
 
 function UsersList() {
     const [users, setUsers] = useState<IUser[]>([])

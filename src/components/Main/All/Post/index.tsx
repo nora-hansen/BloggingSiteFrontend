@@ -5,16 +5,8 @@ import { Link } from 'react-router-dom';
 import env from '../../../../environment'
 import CommentList from '../../Post/CommentList';
 import CommentField from '../../Post/CommentField';
-import { IComment, PostContext } from '../../../../App';
-
-export interface IUser {
-    id: number,
-    email: string,
-    displayName: string,
-    bio: string,
-    iconUrl: string,
-    profileId: number
-  }
+import { PostContext } from '../../../../App';
+import { IComment, IUser } from '../../../../types';
 
 function Post(post: {
     id: number

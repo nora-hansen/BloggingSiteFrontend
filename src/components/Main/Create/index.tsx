@@ -1,24 +1,16 @@
 import { useContext, useState } from 'react'
 import './Create.css'
 import { PostContext, UserContext } from '../../../App'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import env from '../../../environment'
-
-interface IPost {
-    title: string,
-    content: string,
-    postDate: string,
-    userId: number,
-    visibility: number,
-    isDraft: boolean
-  }
+import { IPost } from '../../../types'
 
   const defaultPost: IPost = 
 {
     title: "",
     content: "",
     postDate: "",
-    userId: 0,
+    userID: 0,
     visibility: 3,
     isDraft: true
 }
@@ -29,6 +21,7 @@ function Create()
     const postContext = useContext(PostContext)
 
     const [post, setPost] = useState<IPost>(defaultPost)
+    const navigate = useNavigate()
 
     const handleChange = (event) => {
         const inputValue = event.target.value
@@ -49,7 +42,14 @@ function Create()
         event.preventDefault()
 
         if(event.target.id === "post") {
-            setPost({...post, isDraft: false})
+            setPost(
+                {...post, 
+                    isDraft: false,
+                    userID: userContext.user.id,
+                    postingUser: userContext.user,
+                    comments: [],
+                }
+            )
             postContext.setPosts([...postContext.posts, post])
         } 
         else { 
@@ -69,6 +69,12 @@ function Create()
                 isDraft: event.target.id === "post" ? false : true
             })
         })
+        .then(response => response.json())
+        .then(data => {
+            setPost({...post, id: data.id})
+            navigate(`/post/${data.id}`)
+        })
+
     }
 
     if(userContext.bearer === "")

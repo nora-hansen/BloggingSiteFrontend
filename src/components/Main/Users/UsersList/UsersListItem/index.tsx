@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import './UsersListItem.css'
-import env from '../../../../../environment'
 
 function UsersListItem(user: {iconUrl: string, displayName: string, id: number}) {
     return(
