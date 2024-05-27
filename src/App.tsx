@@ -8,6 +8,8 @@ import Friends from './components/Friends'
 import tempFriends from './temp-friends'
 import env from './environment'
 import { IFriend, IPost, IUser } from './types'
+import { RouterProvider, useLoaderData } from 'react-router-dom'
+import { router } from './router'
 
 const defaultFriends: FriendsContextType = 
 {
@@ -53,6 +55,10 @@ type UserContextType = {
   setUser: (data: object) => void
 }
 
+type LoaderData = {
+  posts: IPost[]
+}
+
 const FriendContext = createContext<FriendsContextType>(defaultFriends)
 const PostContext = createContext<PostsContextType>(defaultPosts)
 const UserContext = createContext<UserContextType>(defaultUser)
@@ -64,18 +70,15 @@ function App()
   const [user, setUser] = useState<IUser>()
   const [bearer, setBearer] = useState<string>("")
 
-  useEffect(() => {
-    fetch(`${env.url}/posts`)
-      .then(response => response.json())
-      .then(data => setPosts(data))
-  }, [])
+  // const loaderPosts = useLoaderData() as LoaderData
 
-  if(posts.length === 0) {
-    return <img src="https://media4.giphy.com/media/yaUG0KDAcIcWA/200w.gif?cid=6c09b952gl1vqnji38xq9mr8ekzyllm3j7521006dg8q7c7x&ep=v1_gifs_search&rid=200w.gif&ct=g"></img>
-  }
+  // if (!loaderPosts.posts) {
+  //   return <img src="https://media4.giphy.com/media/yaUG0KDAcIcWA/200w.gif?cid=6c09b952gl1vqnji38xq9mr8ekzyllm3j7521006dg8q7c7x&ep=v1_gifs_search&rid=200w.gif&ct=g"></img>
+  // }
 
   return (
     <div className="blog-fe">
+      <RouterProvider router={router} />
       <UserContext.Provider value={{
         user: user, 
         setUser: setUser, 
