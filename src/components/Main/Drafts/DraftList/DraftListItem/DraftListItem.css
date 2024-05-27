@@ -1,0 +1,17 @@
+.draft-list-item {
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+
+    font-style: italic;
+    color: gray;
+}
+
+.draft-list-item h1 {
+    font-size: large;
+}
+
+.draft-list-item p {
+    padding-top: 5px;
+    font-size: small;
+}

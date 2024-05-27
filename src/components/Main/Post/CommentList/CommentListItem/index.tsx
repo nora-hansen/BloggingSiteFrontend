@@ -18,7 +18,6 @@ function CommentListItem(comment: {
 
 
     useEffect(() => {
-        console.log("comment", comment)
         if(user === undefined || user === null)
             fetch(`${env.url}/users/${comment.userID}`)
             .then(response => response.json())
@@ -29,7 +28,6 @@ function CommentListItem(comment: {
                         p.comments.map(c => c.id === comment.id ? {...c, commentingUser: data} : c)
                     }
                 : p))
-                postContext.posts.map(p => console.log(p))
             })
     }, [])
 
