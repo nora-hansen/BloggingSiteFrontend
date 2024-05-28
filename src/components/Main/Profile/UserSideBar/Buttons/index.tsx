@@ -23,10 +23,29 @@ function Buttons(user: {userId: number}) {
         }
     }, [user?.userId, userContext.user?.id])
 
+    const handleClick = (event) => {
+        fetch(`${env.url}/friendrequests`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${userContext.bearer}`
+            },
+            body: JSON.stringify({
+                senderId: userContext.user.id,
+                recipientId: user.userId
+            })
+        })
+        .then(response => {
+            if(!response.ok) throw new Error(`${response.status}`)
+            else return response.json()
+        })
+        .then(() => setActiveFriendRequest(true))
+    }
+
     return(
         <>
             {Number(user?.userId) == userContext.user?.id && <Link to="/edit-profile"><button>Edit profile</button></Link>}
-            {Number(user?.userId) != userContext.user?.id && userContext.bearer != "" && !activeFriendRequest && <button>Add friend</button>}
+            {Number(user?.userId) != userContext.user?.id && userContext.bearer != "" && !activeFriendRequest && <button onClick={handleClick}>Add friend</button>}
             {Number(user?.userId) != userContext.user?.id && userContext.bearer != "" && activeFriendRequest && <p>Friend request sent!</p>}
         </>
     )
