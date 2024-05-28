@@ -1,11 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import './Profile.css'
 import { IPost, IUser, PostContext, UserContext } from '../../../App'
-import Post from '../All/Post'
-
-import tempProfiles from '../../../temp-profiles'
-import tempUsers from '../../../temp-multiple-users'
 
 import env from './../../../environment'
 import UserSideBar from './UserSideBar'

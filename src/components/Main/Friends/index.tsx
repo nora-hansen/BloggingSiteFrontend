@@ -1,17 +1,12 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import './Friends.css'
 import { UserContext } from '../../../App'
-import FriendList from '../../Friends/FriendList'
 import { Navigate } from 'react-router-dom'
-import { IUser } from '../All/Post'
+import FriendRequests from './FriendRequests'
+import FriendsList from './FriendsList'
 
 function Friends() {
     const userContext = useContext(UserContext)
-    const [friendRequests, setFriendRequests] = useState<IUser[]>([])
-
-    useEffect(() => {
-        // TODO: Fetch friend requests here...
-    }, [])
 
     if (userContext.bearer == "")
         return <Navigate to="/login" />
@@ -21,13 +16,13 @@ function Friends() {
 
     return(
         <div className="friends">
-            <h1>Friend Requests</h1>
-            <i>None yet!</i>
-            <h1>Friendso</h1>
+            <h1>Friend Requests ({userContext.friendRequests.length})</h1>
+            <FriendRequests />
+            <h1>Friends</h1>
             {userContext.user.friends && 
-                <FriendList />
+                <FriendsList />
             }
-            {userContext.user.friends == null &&
+            {userContext.user.friends.length === 0 &&
             <h3>No friends yet. Try saying hi to someone!</h3>
             }
         </div>

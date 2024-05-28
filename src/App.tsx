@@ -3,16 +3,8 @@ import './App.css'
 import TopBar from './components/TopBar'
 import Main from './components/Main'
 import Footer from './components/Footer'
-import Friends from './components/Friends'
 
-import tempFriends from './temp-friends'
 import env from './environment'
-
-interface IFriend {
-  id: number,
-  name: string,
-  iconUrl: string
-}
 
 export interface IPost {
   id: number,
@@ -45,10 +37,10 @@ export interface IComment {
   commentingUser: IUser
 }
 
-const defaultFriends: FriendsContextType = 
-{
-  friends:
-  []
+export interface IFriendRequest {
+  senderId: number,
+  senderName: string,
+  senderIconUrl: string
 }
 
 const defaultPosts: PostsContextType = 
@@ -66,15 +58,14 @@ const defaultUser: UserContextType = {
     displayName: "",
     bio: "",
     iconUrl: "",
-    profileId: 0
+    profileId: 0,
+    friends: []
   },
   bearer: "",
   setBearer: () => {},
-  setUser: () => {}
-}
-
-type FriendsContextType = {
-  friends: IFriend[]
+  setUser: () => {},
+  friendRequests: [],
+  setFriendRequests: () => {}
 }
 
 type PostsContextType = {
@@ -86,19 +77,20 @@ type UserContextType = {
   bearer: string,
   setBearer: (data: string) => void,
   user: IUser,
-  setUser: (data: object) => void
+  setUser: (data: object) => void,
+  friendRequests: IFriendRequest[],
+  setFriendRequests: (data: object[]) => void
 }
 
-const FriendContext = createContext<FriendsContextType>(defaultFriends)
 const PostContext = createContext<PostsContextType>(defaultPosts)
 const UserContext = createContext<UserContextType>(defaultUser)
 
 function App() 
 {
-  const [friends, setFriends] = useState<IFriend[]>(tempFriends)
   const [posts, setPosts] = useState<IPost[]>([])
   const [user, setUser] = useState<IUser>()
   const [bearer, setBearer] = useState<string>("")
+  const [friendRequests, setFriendRequests] = useState<IFriendRequest[]>([])
 
   useEffect(() => {
     fetch(`${env.url}/posts`)
@@ -116,7 +108,9 @@ function App()
         user: user, 
         setUser: setUser, 
         bearer: bearer, 
-        setBearer: setBearer
+        setBearer: setBearer,
+        friendRequests: friendRequests,
+        setFriendRequests: setFriendRequests
       }}>
         <TopBar />
         <div className="middle">
@@ -124,9 +118,6 @@ function App()
           <PostContext.Provider value={{posts: posts, setPosts: setPosts}}>
             <Main />
           </PostContext.Provider>
-          <FriendContext.Provider value={{friends: friends}}>
-            <Friends />
-          </FriendContext.Provider>
         </div>
       </UserContext.Provider>
       <Footer />
@@ -136,7 +127,6 @@ function App()
 
 export {
   App, 
-  FriendContext, 
   PostContext,
   UserContext
 }
