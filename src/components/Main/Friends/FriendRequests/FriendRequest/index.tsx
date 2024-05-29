@@ -13,15 +13,23 @@ function FriendRequest(friendRequest:
     const userContext = useContext(UserContext)
 
     const handleAccept = (event) => {
-        fetch(`${env.url}/users/${userContext.user.id}`, {
-            method: "PUT", 
+        fetch(`${env.url}/userfriend`, {
+            method: "POST", 
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${userContext.bearer}`
             },
             body: JSON.stringify({
-                
+                userID: userContext.user.id,
+                friendID: friendRequest.senderId
             })
+        })
+
+        fetch(`${env.url}/friendrequests?senderid=${friendRequest.senderId}&recipientId=${userContext.user.id}`, {
+                method: "DELETE",
+                headers: {
+                    "Authorization": `Bearer ${userContext.bearer}`
+                }
             }
         )
     }
