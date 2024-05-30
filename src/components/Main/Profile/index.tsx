@@ -38,7 +38,7 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
             .then(data => setPosts(data))
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [userId])
 
     useEffect(() => {
         fetch(`${env.url}/profiles/${user?.profileId}`)
