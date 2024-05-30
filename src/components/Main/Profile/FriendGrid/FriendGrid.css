@@ -1,0 +1,7 @@
+.friend-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 120px);
+
+    height: 210px;
+    overflow: scroll;
+}

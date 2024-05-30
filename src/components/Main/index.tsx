@@ -13,7 +13,7 @@ import Users from './Users';
 import Drafts from './Drafts';
 import Post from './Post';
 import Signout from './Signout';
-
+import Friends from './Friends';
 function Main()
 {
     const location = useLocation()
@@ -80,6 +80,10 @@ function Main()
                 <Route
                     path="/signout"
                     element={<Signout />}
+                />
+                <Route
+                    path="/friends"
+                    element={<Friends />}
                 />
             </Routes>
         </main>

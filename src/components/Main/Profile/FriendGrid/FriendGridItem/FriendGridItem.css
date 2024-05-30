@@ -1,0 +1,21 @@
+.friend-grid-item {
+    background-color: white;
+    padding: 10px;
+    margin: 5px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100px;
+}
+
+.friend-grid-item img {
+    border-radius: 0;
+
+    width: 70px;
+    height: 70px;
+}
+
+.friend-grid-item p {
+    font-size: small;
+}

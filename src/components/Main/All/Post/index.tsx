@@ -81,12 +81,10 @@ function Post(post: {
                     <p>{post.content}</p>
                 </Link>
             </div>
-            <input type="checkbox" onChange={handleCheck}></input>
-            {commentFieldActivate && 
-                <CommentField postId={post.id} />
-            }
+            <CommentField postId={post.id} />
             <CommentList 
                 comments={post.comments}
+                showAll={false}
             />
             <div className="post-info">
                 <p>{post.postDate}</p>

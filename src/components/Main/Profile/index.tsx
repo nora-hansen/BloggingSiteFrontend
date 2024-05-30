@@ -1,14 +1,11 @@
 import { useContext, useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import './Profile.css'
 import { IPost, IUser, PostContext, UserContext } from '../../../App'
-import Post from '../All/Post'
-
-import tempProfiles from '../../../temp-profiles'
-import tempUsers from '../../../temp-multiple-users'
 
 import env from './../../../environment'
 import UserSideBar from './UserSideBar'
+import FriendGrid from './FriendGrid'
 
 interface IProfile {
     id: number, 
@@ -24,18 +21,21 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
     const [user, setUser] = useState<IUser>()
     const [profile, setProfile] = useState<IProfile>()
     const [posts, setPosts] = useState<IPost[]>()
-    const { userId } = useParams<{ userId?: string }>();
+    const { userId } = useParams<{ userId?: string }>()
+    const [userLoaded, setUserLoaded] = useState<boolean>(false)
+    const [friendsLoaded, setFriendsLoaded] = useState<boolean>(false)
+
 
     useEffect(() => {
         fetch(`${env.url}/users/${userId}`)
             .then(response => response.json() )
             .then(data => setUser(data))
 
+        setUserLoaded(true)
 
         fetch(`${env.url}/posts?userid=${userId}`)
             .then(response => response.json())
             .then(data => setPosts(data))
-
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -44,6 +44,16 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
         fetch(`${env.url}/profiles/${user?.profileId}`)
             .then(response => response.json())
             .then(data => setProfile(data))
+
+        if(userLoaded && !friendsLoaded)
+            {        fetch(`${env.url}/userfriend/${user?.id}`)
+            .then(response => response.json())
+            .then(data => 
+                {
+                    setUser({...user, friends: data.map((d: { friend: unknown; }) => d.friend)})
+                    setFriendsLoaded(true)
+                }
+            )}
     }, [user])
 
     useEffect(() => {
@@ -55,7 +65,7 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
         return <p>Loading...</p>
     }
 
-    if(!userId) {
+    if(!userId || isNaN(Number(userId))) {
         return <div>Cool 404 page</div>
     }
 
@@ -65,19 +75,23 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
                 displayName={user?.displayName}
                 iconUrl={user?.iconUrl}
                 bio={user?.bio} postColor={profile?.postColor} fontColor={profile?.fontColor} userId={Number(userId)}            />
-            <div className="profile-posts"
-                >
-                {posts.map((post, index) => 
-                <div className="profile-post" key={index}
-                style={{backgroundColor: profile?.postColor ? profile?.postColor : "#FFFFFF", color: profile?.fontColor ? profile?.fontColor : "#000000"}} 
-                >
-                    <h1>{post.title}</h1>
-                    <p>{post.content}</p>
+            <div className="middle-of-profile">
+                <div className="profile-posts">
+                    {posts.map((post, index) => 
+                    <div className="profile-post" key={index}
+                    style={{backgroundColor: profile?.postColor ? profile?.postColor : "#FFFFFF", color: profile?.fontColor ? profile?.fontColor : "#000000"}} 
+                    >
+                        <h1>{post.title}</h1>
+                        <p>{post.content}</p>
+                    </div>
+                    )}
                 </div>
-                )}
+                <div className="friends">
+                    <FriendGrid
+                    friends={user.friends} />
+                </div>
             </div>
         </div>
-
     )
 }
 

@@ -64,3 +64,11 @@
     font-style: italic;
     padding: 10px;
 }
+
+#commentCheck {
+    visibility: none;
+}
+
+#commentButton {
+    
+}

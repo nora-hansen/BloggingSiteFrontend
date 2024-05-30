@@ -52,7 +52,10 @@ function Post() {
             <CommentField 
                 postId={post.id}
             />}
-            <CommentList comments={post.comments} />
+            <CommentList 
+                comments={post.comments} 
+                showAll={true}
+            />
         </div>
     )
 }
