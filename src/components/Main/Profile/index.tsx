@@ -27,6 +27,7 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
 
 
     useEffect(() => {
+        setFriendsLoaded(false) // In case it is true, left over from pther profile visit
         fetch(`${env.url}/users/${userId}`)
             .then(response => response.json() )
             .then(data => setUser(data))
