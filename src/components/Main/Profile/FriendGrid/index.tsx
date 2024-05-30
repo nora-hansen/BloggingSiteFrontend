@@ -1,17 +1,21 @@
-import { useContext } from 'react'
 import './FriendGrid.css'
-import { UserContext } from '../../../../App'
 import FriendGridItem from './FriendGridItem'
+import { IUser } from '../../All/Post'
 
-function FriendGrid() {
+function FriendGrid(user: {friends: IUser[]}) {
+    console.log("mornings", user.friends)
 
-    const userContext = useContext(UserContext)
     return(
         <>
             <h3>Friends</h3>
             <div className='friend-grid'>
-                {userContext.user.friends.map((fr, key) => 
-                    <FriendGridItem />
+                {user.friends.map((fr, index) => 
+                    <FriendGridItem
+                    key={index} 
+                    friendId={fr.id}
+                    displayName={fr.displayName}
+                    iconUrl={fr.iconUrl}
+                    />
                 )}
             </div>
         </>

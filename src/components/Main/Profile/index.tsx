@@ -21,12 +21,17 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
     const [user, setUser] = useState<IUser>()
     const [profile, setProfile] = useState<IProfile>()
     const [posts, setPosts] = useState<IPost[]>()
-    const { userId } = useParams<{ userId?: string }>();
+    const { userId } = useParams<{ userId?: string }>()
+    const [userLoaded, setUserLoaded] = useState<boolean>(false)
+    const [friendsLoaded, setFriendsLoaded] = useState<boolean>(false)
+
 
     useEffect(() => {
         fetch(`${env.url}/users/${userId}`)
             .then(response => response.json() )
             .then(data => setUser(data))
+
+        setUserLoaded(true)
 
         fetch(`${env.url}/posts?userid=${userId}`)
             .then(response => response.json())
@@ -39,6 +44,16 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
         fetch(`${env.url}/profiles/${user?.profileId}`)
             .then(response => response.json())
             .then(data => setProfile(data))
+
+        if(userLoaded && !friendsLoaded)
+            {        fetch(`${env.url}/userfriend/${user?.id}`)
+            .then(response => response.json())
+            .then(data => 
+                {
+                    setUser({...user, friends: data.map((d: { friend: unknown; }) => d.friend)})
+                    setFriendsLoaded(true)
+                }
+            )}
     }, [user])
 
     useEffect(() => {
@@ -72,11 +87,11 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
                     )}
                 </div>
                 <div className="friends">
-                    <FriendGrid />
+                    <FriendGrid
+                    friends={user.friends} />
                 </div>
             </div>
         </div>
-
     )
 }
 

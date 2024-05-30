@@ -60,7 +60,6 @@ function Login()
         .then(response => response.json())
         .then(data => {
             userContext.setUser({...userContext.user, friends: data.map((d: { friend: unknown; }) => d.friend)})
-            console.log("the data", data)
         })
         return <Navigate to="/" />
     }
