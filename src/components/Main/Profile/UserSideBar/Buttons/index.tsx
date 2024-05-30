@@ -10,11 +10,11 @@ function Buttons(user: {userId: number}) {
     const [isFriend, setIsFriend] = useState<boolean>(false)
 
     useEffect(() => {
-        if (user?.userId !== userContext.user?.id)  // Check if this is the profile
+        if (user?.userId !== userContext.user.id)  // Check if this is the profile
                                                     //  of the signed in user
         {
-            if (userContext.user && !userContext.user.friends.some(f => user.userId === f.id))
-                fetch(`${env.url}/friendrequests?senderId=${userContext.user?.id}&recipientId=${user?.userId}`)
+            if (userContext.user.friends && !userContext.user.friends.some(f => user.userId === f.id))
+                fetch(`${env.url}/friendrequests?senderId=${userContext.user.id}&recipientId=${user.userId}`)
                 .then(response => {
                     if(!response.ok) throw new Error(`${response.status}`)
                     else return response.json()
@@ -58,7 +58,9 @@ function Buttons(user: {userId: number}) {
                 }
             )
 
-            userContext.setUser({...user, friends: userContext.user.friends.filter(f => f.id != user.userId)})
+            userContext.setUser({...userContext.user, friends: userContext.user.friends.filter(f => f.id != user.userId)})
+
+            setIsFriend(false)
         }
     }
 
@@ -68,7 +70,7 @@ function Buttons(user: {userId: number}) {
             {Number(user?.userId) != userContext.user?.id && userContext.bearer != "" && !activeFriendRequest && !isFriend && <button name="addfriend" onClick={handleClick}>Add friend</button>}
             {Number(user?.userId) != userContext.user?.id && userContext.bearer != "" && activeFriendRequest && <p>Friend request sent!</p>}
             {Number(user?.userId) != userContext.user?.id && isFriend && userContext.bearer != ""
-            && <button onClick={handleClick}>Remove friend</button>
+            && <button name="removefriend" onClick={handleClick}>Remove friend</button>
             }
         </>
     )
