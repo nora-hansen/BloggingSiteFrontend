@@ -5,6 +5,7 @@ import { IPost, IUser, PostContext, UserContext } from '../../../App'
 
 import env from './../../../environment'
 import UserSideBar from './UserSideBar'
+import FriendGrid from './FriendGrid'
 
 interface IProfile {
     id: number, 
@@ -49,7 +50,7 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
         return <p>Loading...</p>
     }
 
-    if(!userId) {
+    if(!userId || isNaN(Number(userId))) {
         return <div>Cool 404 page</div>
     }
 
@@ -59,16 +60,20 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
                 displayName={user?.displayName}
                 iconUrl={user?.iconUrl}
                 bio={user?.bio} postColor={profile?.postColor} fontColor={profile?.fontColor} userId={Number(userId)}            />
-            <div className="profile-posts"
-                >
-                {posts.map((post, index) => 
-                <div className="profile-post" key={index}
-                style={{backgroundColor: profile?.postColor ? profile?.postColor : "#FFFFFF", color: profile?.fontColor ? profile?.fontColor : "#000000"}} 
-                >
-                    <h1>{post.title}</h1>
-                    <p>{post.content}</p>
+            <div className="middle-of-profile">
+                <div className="profile-posts">
+                    {posts.map((post, index) => 
+                    <div className="profile-post" key={index}
+                    style={{backgroundColor: profile?.postColor ? profile?.postColor : "#FFFFFF", color: profile?.fontColor ? profile?.fontColor : "#000000"}} 
+                    >
+                        <h1>{post.title}</h1>
+                        <p>{post.content}</p>
+                    </div>
+                    )}
                 </div>
-                )}
+                <div className="friends">
+                    <FriendGrid />
+                </div>
             </div>
         </div>
 

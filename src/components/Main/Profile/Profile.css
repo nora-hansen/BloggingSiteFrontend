@@ -11,3 +11,8 @@
 .profile-post h1 {
     font-size: larger;
 }
+
+.middle-of-profile {
+    display: flex;
+    flex-direction: column;
+}
