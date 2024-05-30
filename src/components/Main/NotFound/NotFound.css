@@ -1,0 +1,20 @@
+.fourohfour {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fourohfour h1 {
+    font-size: 56px;
+}
+
+.fourohfour p {
+    font-size: 20px;
+}
+
+.fourohfour img {
+    border-radius: 0;
+
+    height: 100%;
+    width: 20%;
+}

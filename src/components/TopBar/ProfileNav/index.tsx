@@ -16,7 +16,8 @@ function ProfileNav()
             }
             {(userContext.bearer !== "") && 
             <>
-                <Link to="/signout">Logout</Link>
+                <Link to="/settings">User settings</Link>
+                <Link to="/signout">Sign out</Link>
                 <Link to={`/user/${userContext.user?.id}`}><img src={userContext.user?.iconUrl || "../hamster.jpg"} alt="Placeholder image of a hamster on its back."></img></Link>
             </>
             }
