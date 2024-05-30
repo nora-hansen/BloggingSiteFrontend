@@ -14,6 +14,7 @@ function Login()
         password: ""
     })
     const [successfulLogin, setSuccessfulLogin] = useState<boolean>(false)
+    const [displayError, setDisplayError] = useState<boolean>(false)
 
     const handleChange = (event) => {
         const inputValue = event.target.value
@@ -44,18 +45,23 @@ function Login()
             },
             body: JSON.stringify(userDetails)
             })
-            .then(response => response.json())
+            .then(response => {
+                if (response.ok)
+                    return response.json()
+                else throw new Error('Wrong credential')
+            })
             .then(data => {
                 userContext.setBearer(data.token)
                 localStorage.setItem("bearer", data.token)
             })
             .catch(error => {
+                setDisplayError(true)
                 console.error(error)
             })
     }
 
     // TODO: User is not properly cleared when logging out
-    if (userContext.user.id !== undefined) {
+    if (userContext.user.id !== undefined && userContext.bearer !== "") {
         fetch(`${env.url}/userfriend/${userContext.user.id}`)
         .then(response => response.json())
         .then(data => {
@@ -75,6 +81,7 @@ function Login()
         <div className="login-page">
             <form onSubmit={handleSubmit}>
                 <h1>Login</h1>
+                {displayError && <p className="credential-error">Incorrect email/password!</p>}
                 <label>
                     E-Mail
                     <input type="email" name="email" required onChange={handleChange}/>

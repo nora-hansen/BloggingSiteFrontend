@@ -45,13 +45,9 @@ function SignUp()
             })
             .then(response => {
                 if (response.status !== 201) {
-                    console.log("I throw because status is", response.status)
                     throw new Error(`${response.status}`)
                 }
-
-                console.log("I should redirect because", response.status)
                 navigate('/login')
-
             })
             .catch((error) => {
                 console.log(error)
