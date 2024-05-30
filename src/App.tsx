@@ -88,7 +88,7 @@ const UserContext = createContext<UserContextType>(defaultUser)
 function App() 
 {
   const [posts, setPosts] = useState<IPost[]>([])
-  const [user, setUser] = useState<IUser>()
+  const [user, setUser] = useState<IUser>({})
   const [bearer, setBearer] = useState<string>("")
   const [friendRequests, setFriendRequests] = useState<IFriendRequest[]>([])
 

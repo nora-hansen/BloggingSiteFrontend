@@ -55,7 +55,7 @@ function Login()
     }
 
     // TODO: User is not properly cleared when logging out
-    if (userContext.user !== undefined) {
+    if (userContext.user.id !== undefined) {
         fetch(`${env.url}/userfriend/${userContext.user.id}`)
         .then(response => response.json())
         .then(data => {

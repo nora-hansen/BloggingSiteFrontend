@@ -1,7 +1,8 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { UserContext } from '../../../../../App'
 import env from '../../../../../environment'
 import './FriendRequest.css'
+import { IUser } from '../../../All/Post'
 
 function FriendRequest(friendRequest: 
     {
@@ -11,6 +12,7 @@ function FriendRequest(friendRequest:
     }) {
 
     const userContext = useContext(UserContext)
+    const [newFriend, setNewFriend] = useState<IUser>()
 
     const handleAccept = (event) => {
         fetch(`${env.url}/userfriend`, {
@@ -32,6 +34,14 @@ function FriendRequest(friendRequest:
                 }
             }
         )
+
+        userContext.setUser({...userContext.user, friends: [...userContext.user.friends, {
+            id: friendRequest.senderId,
+            displayName: friendRequest.senderName,
+            iconUrl: friendRequest.senderIconUrl
+        }]})
+
+        userContext.setFriendRequests(userContext.friendRequests.filter(fr => fr.senderId !== friendRequest.senderId))
     }
 
     return(
