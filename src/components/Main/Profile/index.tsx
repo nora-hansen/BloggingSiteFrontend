@@ -27,6 +27,7 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
 
 
     useEffect(() => {
+        setFriendsLoaded(false) // In case it is true, left over from pther profile visit
         fetch(`${env.url}/users/${userId}`)
             .then(response => response.json() )
             .then(data => setUser(data))
@@ -38,7 +39,7 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
             .then(data => setPosts(data))
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [userId])
 
     useEffect(() => {
         fetch(`${env.url}/profiles/${user?.profileId}`)
