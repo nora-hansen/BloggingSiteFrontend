@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './Login.css'
 import { Link, Navigate } from 'react-router-dom';
 import env from '../../../environment';
@@ -44,21 +44,25 @@ function Login()
             },
             body: JSON.stringify(userDetails)
             })
-                .then(response => response.json())
-                .then(data => {
-                    userContext.setBearer(data.token)
-                    localStorage.setItem("bearer", data.token)
-                })
-                // .then(async () => {
-                //     if (userContext.bearer !== "") {
-                //         const response = await fetch(`${env.url}/users?email=${userDetails.email}`);
-                //         const data = await response.json();
-                //         userContext.setUser(data[0]);
-                //     }
-                // })
-                .catch(error => {
-                    console.error(error)
-                })
+            .then(response => response.json())
+            .then(data => {
+                userContext.setBearer(data.token)
+                localStorage.setItem("bearer", data.token)
+            })
+            .catch(error => {
+                console.error(error)
+            })
+    }
+
+    // TODO: User is not properly cleared when logging out
+    if (userContext.user !== undefined) {
+        fetch(`${env.url}/userfriend/${userContext.user.id}`)
+        .then(response => response.json())
+        .then(data => {
+            userContext.setUser({...userContext.user, friends: data.map((d: { friend: unknown; }) => d.friend)})
+            console.log("the data", data)
+        })
+        return <Navigate to="/" />
     }
 
     if (userContext.bearer !== "")
@@ -66,7 +70,6 @@ function Login()
         fetch(`${env.url}/users?email=${userDetails.email}`)
             .then(response => response.json())
             .then(data => userContext.setUser(data[0]))
-        return <Navigate to="/" />
     }
 
     return(

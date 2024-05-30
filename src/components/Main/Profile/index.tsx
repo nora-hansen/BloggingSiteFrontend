@@ -27,11 +27,9 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
             .then(response => response.json() )
             .then(data => setUser(data))
 
-
         fetch(`${env.url}/posts?userid=${userId}`)
             .then(response => response.json())
             .then(data => setPosts(data))
-
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
