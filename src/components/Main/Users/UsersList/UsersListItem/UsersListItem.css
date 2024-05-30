@@ -8,3 +8,11 @@
     flex-direction: row;
     align-items: center;
 }
+
+#friend-icon {
+    border-radius: 0;
+    width: 20px;
+    height: 20px;
+
+    padding-left: 10px;
+}

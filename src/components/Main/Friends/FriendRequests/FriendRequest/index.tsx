@@ -44,12 +44,22 @@ function FriendRequest(friendRequest:
         userContext.setFriendRequests(userContext.friendRequests.filter(fr => fr.senderId !== friendRequest.senderId))
     }
 
+    const handleDeny = (event) => {
+        fetch(`${env.url}/friendrequests?senderid=${friendRequest.senderId}&recipientId=${userContext.user.id}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${userContext.bearer}`
+            }
+        })
+        userContext.setFriendRequests(userContext.friendRequests.filter(fr => fr.senderId !== friendRequest.senderId))
+    }
+
     return(
         <div className="friend-item">
             <img src={friendRequest.senderIconUrl} alt={`${friendRequest.senderName}'s icon image`}></img>
             <p>{friendRequest.senderName}</p>
             <button onClick={handleAccept}>Accept</button>
-            <button>Deny</button>
+            <button onClick={handleDeny}>Deny</button>
         </div>
     )
 }
