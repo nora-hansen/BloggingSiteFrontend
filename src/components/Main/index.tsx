@@ -14,6 +14,8 @@ import Drafts from './Drafts';
 import Post from './Post';
 import Signout from './Signout';
 import Friends from './Friends';
+import UserSettings from './UserSettings';
+import NotFound from './NotFound';
 function Main()
 {
     const location = useLocation()
@@ -84,6 +86,14 @@ function Main()
                 <Route
                     path="/friends"
                     element={<Friends />}
+                />
+                <Route
+                    path="/settings"
+                    element={<UserSettings />}
+                />
+                <Route
+                    path="*"
+                    element={<NotFound />}
                 />
             </Routes>
         </main>
