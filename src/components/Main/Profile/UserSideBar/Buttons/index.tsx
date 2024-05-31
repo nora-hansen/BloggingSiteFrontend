@@ -70,7 +70,11 @@ function Buttons(user: {userId: number}) {
             {Number(user?.userId) != userContext.user?.id && userContext.bearer != "" && !activeFriendRequest && !isFriend && <button name="addfriend" onClick={handleClick}>Add friend</button>}
             {Number(user?.userId) != userContext.user?.id && userContext.bearer != "" && activeFriendRequest && <p>Friend request sent!</p>}
             {Number(user?.userId) != userContext.user?.id && isFriend && userContext.bearer != ""
-            && <button name="removefriend" onClick={handleClick}>Remove friend</button>
+            && 
+                <>
+                    <img className="friend-icon" src="../friends.png"></img><p>You are friends!</p>
+                    <button name="removefriend" onClick={handleClick}>Remove friend</button>
+                </>
             }
         </>
     )

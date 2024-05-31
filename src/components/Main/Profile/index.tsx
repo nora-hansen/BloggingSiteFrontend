@@ -1,13 +1,15 @@
 import { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Navigate, Route, Routes, useParams } from 'react-router-dom'
 import './Profile.css'
 import { IPost, IUser, PostContext, UserContext } from '../../../App'
 
 import env from './../../../environment'
 import UserSideBar from './UserSideBar'
 import FriendGrid from './FriendGrid'
+import PostList from './PostList'
+import ProfilePost from './ProfilePost'
 
-interface IProfile {
+export interface IProfile {
     id: number, 
     bgColor: string,
     fontColor: string,
@@ -67,7 +69,7 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
     }
 
     if(!userId || isNaN(Number(userId))) {
-        return <div>Cool 404 page</div>
+        return <Navigate to="/notfound" />
     }
 
     return(
@@ -77,15 +79,16 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
                 iconUrl={user?.iconUrl}
                 bio={user?.bio} postColor={profile?.postColor} fontColor={profile?.fontColor} userId={Number(userId)}            />
             <div className="middle-of-profile">
-                <div className="profile-posts">
-                    {posts.map((post, index) => 
-                    <div className="profile-post" key={index}
-                    style={{backgroundColor: profile?.postColor ? profile?.postColor : "#FFFFFF", color: profile?.fontColor ? profile?.fontColor : "#000000"}} 
-                    >
-                        <h1>{post.title}</h1>
-                        <p>{post.content}</p>
+                <div className="post-list-and-content">
+                    <PostList posts={posts}/>
+                    <div className="profile-posts">
+                        <Routes>
+                            <Route
+                                path="post/:id"
+                                element={<ProfilePost posts={posts} profile={profile} />}
+                            />
+                        </Routes>
                     </div>
-                    )}
                 </div>
                 <div className="friends">
                     <FriendGrid

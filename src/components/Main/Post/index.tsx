@@ -29,7 +29,8 @@ function Post() {
                         displayName: data.displayName,
                         bio: "",
                         iconUrl: data.iconUrl,
-                        profileId: data.profileId
+                        profileId: data.profileId,
+                        friends: data.friends
                     } } : p))
                 })
     }, [post, postContext, postId])
@@ -38,15 +39,26 @@ function Post() {
         return <img src="https://media4.giphy.com/media/yaUG0KDAcIcWA/200w.gif?cid=6c09b952gl1vqnji38xq9mr8ekzyllm3j7521006dg8q7c7x&ep=v1_gifs_search&rid=200w.gif&ct=g"></img>
     }
 
+    if(post.postingUser.id !== userContext.user.id && post.visibility === 2)
+        return <Navigate to="/notfound" />
+
     return(
         <div className="single-post">
             <div className="user-and-post">
+            {post.isDraft &&
+                <p>Draft</p>
+            }
             <UserInfo 
                 displayName={post.postingUser.displayName}
                 iconUrl={post.postingUser.iconUrl}
                 id={post.postingUser.id} 
             />
             <PostContent title={post.title} content={post.content} />
+            {post.visibility === 2 && post.postingUser.id === userContext.user.id &&
+                <div>
+                    <img src="../privacy.png"></img><p>Only you can see this</p>
+                </div>
+            }
             </div>
             {userContext.bearer !== "" && 
             <CommentField 
@@ -54,7 +66,6 @@ function Post() {
             />}
             <CommentList 
                 comments={post.comments} 
-                showAll={true}
             />
         </div>
     )

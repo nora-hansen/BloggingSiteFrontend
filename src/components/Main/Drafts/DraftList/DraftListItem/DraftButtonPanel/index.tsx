@@ -23,7 +23,7 @@ function DraftButtonPanel(draft: {draftId: number}) {
         }
 
         if (event.target.name === "edit") {
-            
+            alert("Not implemented yet\nhehe :3c")
         }
 
         if (event.target.name === "delete") {

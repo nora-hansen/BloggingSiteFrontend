@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import env from '../../../../environment'
 import CommentList from '../../Post/CommentList';
 import CommentField from '../../Post/CommentField';
-import { IComment, PostContext } from '../../../../App';
+import { IComment, PostContext, UserContext } from '../../../../App';
 
 export interface IUser {
     id: number,
@@ -30,6 +30,7 @@ function Post(post: {
 {
     const [commentFieldActivate, setCommentFieldActivate] = useState<boolean>(false)
     const postContext = useContext(PostContext)
+    const userContext = useContext(UserContext)
     const [postingUser, setPostingUser] = useState<IUser>(post.postingUser)
 
     const handleCheck = () => {
@@ -50,6 +51,7 @@ function Post(post: {
                         iconUrl: data.iconUrl,
                         profileId: data.profileId
                     })
+                    // TODO: Why are you mad?
                     postContext.setPosts(postContext.posts.map(p => p.id === post.id ? {...p, postingUser: {
                         id: data.id,
                         email: data.email,
@@ -66,7 +68,6 @@ function Post(post: {
 
     return(
         <div className="post-item">
-
             <div className="post-user-details">
                 <Link to={`user/${postingUser.id}`}>
                     <img src={postingUser.iconUrl ? postingUser.iconUrl : "../hamster.jpg"} alt={`${postingUser.displayName}'s Profile picture`}></img>
@@ -77,18 +78,14 @@ function Post(post: {
             </div>
             <div className="post-content-full">
                 <Link to={`/post/${post.id}`}>
-                    <h1>{post.title}</h1>
-                    <p>{post.content}</p>
+                    <h1>{post.title !== "" ? post.title : post.content}</h1>
                 </Link>
             </div>
-            <CommentField postId={post.id} />
-            <CommentList 
-                comments={post.comments}
-                showAll={false}
-            />
-            <div className="post-info">
-                <p>{post.postDate}</p>
-            </div>
+            {post.visibility === 2 && postingUser.id === userContext.user.id &&
+                <div>
+                    <img src="../privacy.png"></img><p>Only you can see this</p>
+                </div>
+            }
         </div>
     )
 }

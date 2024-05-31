@@ -1,12 +1,13 @@
 import './All.css'
 
-import { PostContext } from '../../../App';
+import { PostContext, UserContext } from '../../../App';
 import { useContext } from 'react';
 import Post from './Post';
 
 function All() {
 
     const postContext = useContext(PostContext)
+    const userContext = useContext(UserContext)
 
     if(!postContext.posts)
         return <></>
@@ -14,9 +15,9 @@ function All() {
     return(
         <div className="all-posts-page">
             <h1>All posts</h1>
-            <div className="post-list">
+            <div className="post-list-all">
                 {postContext.posts.map((post, index) => 
-                    !post.isDraft && 
+                    !post.isDraft && (userContext.user.id === post.userID || post.visibility < 1) && 
                         <Post key={index}
                         id={post.id}
                         title={post.title}

@@ -1,0 +1,11 @@
+.profile-post {
+    margin: 20px;
+    padding: 10px;
+
+    word-wrap: break-word;
+}
+
+.post-date {
+    font-size: x-small;
+    font-style: italic;
+}

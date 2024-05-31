@@ -10,7 +10,7 @@ const defaultPost: IPost =
     content: "",
     postDate: "",
     userID: 0,
-    visibility: 3,
+    visibility: 2,
     isDraft: true
 }
 
@@ -92,11 +92,11 @@ function Create()
                         <fieldset>
                         <legend>Visibility</legend>
                             <div className="create-post-visibility-radio">
-                                <input type="radio" id="Public" name="visibility" value={1} onChange={handleChange} checked={post.visibility == 1}/> 
+                                <input type="radio" id="Public" name="visibility" value={0} onChange={handleChange} checked={post.visibility == 0}/> 
                                 <label htmlFor="Public">Public</label>
-                                <input type="radio" id="FriendsOnly" name="visibility" value={2} onChange={handleChange} checked={post.visibility == 2}/>                     
+                                <input type="radio" id="FriendsOnly" name="visibility" value={1} onChange={handleChange} checked={post.visibility == 1}/>                     
                                 <label htmlFor="FriendsOnly">Friends only</label>
-                                <input type="radio" id="Private" name="visibility" value={3} onChange={handleChange} checked={post.visibility == 3}/> 
+                                <input type="radio" id="Private" name="visibility" value={2} onChange={handleChange} checked={post.visibility == 2}/> 
                                 <label htmlFor="Private">Private</label>
                             </div>
                         </fieldset>

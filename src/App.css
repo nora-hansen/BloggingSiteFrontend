@@ -19,6 +19,7 @@ table { border-collapse: collapse; border-spacing: 0;}
   width: 100vw;
 
   justify-content: space-between;
+  word-wrap: break-word;
 }
 
 .middle {
