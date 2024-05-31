@@ -3,8 +3,6 @@ import FriendGridItem from './FriendGridItem'
 import { IUser } from '../../All/Post'
 
 function FriendGrid(user: {friends: IUser[]}) {
-    console.log("mornings", user.friends)
-
     return(
         <>
             <h3>Friends</h3>

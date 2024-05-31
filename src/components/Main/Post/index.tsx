@@ -42,11 +42,30 @@ function Post() {
     if(post.postingUser.id !== userContext.user.id && post.visibility === 2)
         return <Navigate to="/notfound" />
 
+    const handleDelete = (event) => {
+        if (confirm("Are you sure you want to delete this post?")) {
+            fetch(`${env.url}/posts/${post.id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${userContext.bearer}`
+                }
+            })
+            .then(response => {
+                if(response.status !== 204)
+                    throw new Error("An error occured :(")
+            })
+            .catch(error => console.error(error))
+
+            postContext.setPosts(postContext.posts.filter(p => p.id !== post.id))
+        }
+    }
+
     return(
         <div className="single-post">
             <div className="user-and-post">
             {post.isDraft &&
-                <p>Draft</p>
+                <p className="draft-message">Draft</p>
             }
             <UserInfo 
                 displayName={post.postingUser.displayName}
@@ -60,6 +79,9 @@ function Post() {
                 </div>
             }
             </div>
+            {userContext.user.id === post.userID &&
+                <button onClick={handleDelete}><img src="../bin.png"></img></button>
+            }
             {userContext.bearer !== "" && 
             <CommentField 
                 postId={post.id}
