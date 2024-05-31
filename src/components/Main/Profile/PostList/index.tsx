@@ -9,7 +9,7 @@ function PostList(p: {posts: IPost[]}) {
             <h3>Posts</h3>
             <ul>
                 {p.posts.map((p, index) => 
-                    <Link to={`post/${p.id}`}><li key={index}>{p.title || p.content}</li></Link>
+                    !p.isDraft && p.visibility === 0 && <Link to={`post/${p.id}`}><li key={index}>{p.title || p.content}</li></Link>
                 )}
             </ul>
         </div>

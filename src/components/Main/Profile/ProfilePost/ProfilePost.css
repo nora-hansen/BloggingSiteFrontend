@@ -4,3 +4,8 @@
 
     word-wrap: break-word;
 }
+
+.post-date {
+    font-size: x-small;
+    font-style: italic;
+}

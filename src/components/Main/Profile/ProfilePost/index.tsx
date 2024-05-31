@@ -23,7 +23,7 @@ function ProfilePost(p: {posts: IPost[], profile: IProfile})
         >
             <h1>{post.title}</h1>
             <p>{post.content}</p>
-            <p>{post.postDate}</p>
+            <p className="post-date">{post.postDate}</p>
             <CommentList comments={post.comments} />
         </div>
     )

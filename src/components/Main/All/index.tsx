@@ -15,7 +15,7 @@ function All() {
     return(
         <div className="all-posts-page">
             <h1>All posts</h1>
-            <div className="post-list">
+            <div className="post-list-all">
                 {postContext.posts.map((post, index) => 
                     !post.isDraft && (userContext.user.id === post.userID || post.visibility < 1) && 
                         <Post key={index}

@@ -88,14 +88,6 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
                                 element={<ProfilePost posts={posts} profile={profile} />}
                             />
                         </Routes>
-                        {/* {posts.map((post, index) => 
-                        <div className="profile-post" key={index}
-                        style={{backgroundColor: profile?.postColor ? profile?.postColor : "#FFFFFF", color: profile?.fontColor ? profile?.fontColor : "#000000"}} 
-                        >
-                            <h1>{post.title}</h1>
-                            <p>{post.content}</p>
-                        </div>
-                        )} */}
                     </div>
                 </div>
                 <div className="friends">
