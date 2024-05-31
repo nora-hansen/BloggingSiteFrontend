@@ -66,7 +66,6 @@ function Post() {
             />}
             <CommentList 
                 comments={post.comments} 
-                showAll={true}
             />
         </div>
     )
