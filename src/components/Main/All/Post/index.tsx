@@ -78,8 +78,7 @@ function Post(post: {
             </div>
             <div className="post-content-full">
                 <Link to={`/post/${post.id}`}>
-                    <h1>{post.title}</h1>
-                    <p>{post.content}</p>
+                    <h1>{post.title !== "" ? post.title : post.content}</h1>
                 </Link>
             </div>
             {post.visibility === 2 && postingUser.id === userContext.user.id &&
@@ -87,14 +86,6 @@ function Post(post: {
                     <img src="../privacy.png"></img><p>Only you can see this</p>
                 </div>
             }
-            <CommentField postId={post.id} />
-            <CommentList 
-                comments={post.comments}
-                showAll={false}
-            />
-            <div className="post-info">
-                <p>{post.postDate}</p>
-            </div>
         </div>
     )
 }
