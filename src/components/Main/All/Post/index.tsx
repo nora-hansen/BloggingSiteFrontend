@@ -79,9 +79,9 @@ function Post(post: {
                     <h1>{post.title !== "" ? post.title : post.content}</h1>
                 </Link>
             </div>
-            {post.visibility === 2 && postingUser.id === userContext.user.id &&
-                <div>
-                    <img src="../privacy.png"></img><p>Only you can see this</p>
+            { post.visibility === 2 && postingUser.id === userContext.user.id &&
+                <div className="private-indicator">
+                    <img src="../privacy.png"/><p>Only you can see this</p>
                 </div>
             }
         </div>

@@ -11,3 +11,18 @@
     display: flex;
     flex-direction: row;
 }
+
+.private-indicator {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    font-style: italic;
+}
+
+.private-indicator img {
+    width: 20px;
+    height: 20px;
+
+    padding: 5px;
+}

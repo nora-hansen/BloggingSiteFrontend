@@ -48,3 +48,13 @@
 #commentButton {
     
 }
+
+.private-indicator {
+    display: flex;
+    flex-direction: row;
+}
+
+.private-indicator img {
+    width: 20px;
+    height: 20px;
+}

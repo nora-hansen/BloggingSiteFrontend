@@ -64,20 +64,22 @@ function Post() {
     return(
         <div className="single-post">
             <div className="user-and-post">
-            {post.isDraft &&
-                <p className="draft-message">Draft</p>
-            }
-            <UserInfo 
-                displayName={post.postingUser.displayName}
-                iconUrl={post.postingUser.iconUrl}
-                id={post.postingUser.id} 
-            />
-            <PostContent title={post.title} content={post.content} />
-            {post.visibility === 2 && post.postingUser.id === userContext.user.id &&
-                <div>
-                    <img src="../privacy.png"></img><p>Only you can see this</p>
+                {post.isDraft &&
+                    <p className="draft-message">Draft</p>
+                }
+                <UserInfo 
+                    displayName={post.postingUser.displayName}
+                    iconUrl={post.postingUser.iconUrl}
+                    id={post.postingUser.id} 
+                />
+                <div className='post-section'>
+                    {post.visibility === 2 && post.postingUser.id === userContext.user.id &&
+                        <div className="private-indicator">
+                            <img src="../privacy.png"></img><p>Only you can see this</p>
+                        </div>
+                    }
+                    <PostContent title={post.title} content={post.content} />
                 </div>
-            }
             </div>
             {userContext.user.id === post.userID &&
                 <button onClick={handleDelete}><img src="../bin.png"></img></button>
