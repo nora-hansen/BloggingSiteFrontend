@@ -6,6 +6,7 @@ import env from '../../../../environment'
 import CommentList from '../../Post/CommentList';
 import CommentField from '../../Post/CommentField';
 import { IComment, PostContext, UserContext } from '../../../../App';
+import UserSection from './UserSection';
 
 export interface IUser {
     id: number,
@@ -68,14 +69,11 @@ function Post(post: {
 
     return(
         <div className="post-item">
-            <div className="post-user-details">
-                <Link to={`user/${postingUser.id}`}>
-                    <img src={postingUser.iconUrl ? postingUser.iconUrl : "../hamster.jpg"} alt={`${postingUser.displayName}'s Profile picture`}></img>
-                </Link>
-                <Link to={`/user/${postingUser.id}`}>
-                    <p>{postingUser.displayName ? postingUser.displayName : "Anonymous Hamster"}</p>
-                </Link>
-            </div>
+            <UserSection
+                id={postingUser.id}
+                iconUrl={postingUser.iconUrl}
+                displayName={postingUser.displayName}
+            />
             <div className="post-content-full">
                 <Link to={`/post/${post.id}`}>
                     <h1>{post.title !== "" ? post.title : post.content}</h1>

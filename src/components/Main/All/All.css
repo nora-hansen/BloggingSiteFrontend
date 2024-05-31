@@ -3,6 +3,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 20px;
+}
+
+.all-posts-page h1 {
+    font-size: large;
 }
 
 .post-list-all {

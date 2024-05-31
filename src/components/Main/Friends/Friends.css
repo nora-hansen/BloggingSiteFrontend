@@ -1,3 +1,12 @@
+.friends {
+    padding: 20px;
+}
+
+.friends h1 {
+    font-size: large;
+    padding: 10px 0 10px 0;
+}
+
 .friend-item {
     background-color: rgb(255, 255, 255);
 
