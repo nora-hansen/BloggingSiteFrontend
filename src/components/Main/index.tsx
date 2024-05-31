@@ -62,7 +62,7 @@ function Main()
                     element={<Login />}
                 />
                 <Route
-                    path="/user/:userId"
+                    path="/user/:userId/*"
                     element={<Profile 
                         setBgColor={setBgColor}
                     />}
