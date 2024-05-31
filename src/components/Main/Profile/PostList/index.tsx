@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { IPost } from '../../../../App'
 import './PostList.css'
 
-function PostList(p: {posts: IPost[]}) {
+function PostList(p: {posts: IPost[]} ) {
 
     return(
         <div className="post-list">

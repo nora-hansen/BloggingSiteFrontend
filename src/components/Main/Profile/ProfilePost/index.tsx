@@ -1,17 +1,18 @@
 import { useContext, useEffect, useState } from 'react'
 import './ProfilePost.css'
 import { IPost, PostContext, UserContext } from '../../../../App'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import CommentList from '../../Post/CommentList'
 import { IProfile } from '..'
 import env from '../../../../environment'
 
-function ProfilePost(p: {posts: IPost[], profile: IProfile}) 
+function ProfilePost(p: {posts: IPost[], profile: IProfile, setPosts: (IPost[])}) 
 {
     const [post, setPost] = useState<IPost>()
     const { id } = useParams<{ id?: string }>();
     const userContext = useContext(UserContext)
     const postContext = useContext(PostContext)
+    const navigate = useNavigate()
 
     useEffect(() => {
         setPost(p.posts.filter(pp => pp.id === Number(id))[0])
@@ -35,7 +36,9 @@ function ProfilePost(p: {posts: IPost[], profile: IProfile})
             })
             .catch(error => console.error(error))
 
+            p.setPosts(p.posts.filter(p => p.id !== post.id))
             postContext.setPosts(postContext.posts.filter(p => p.id !== post.id))
+            // navigate(`/user/${}`)
         }
     }
 

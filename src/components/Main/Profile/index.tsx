@@ -86,7 +86,7 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
                         <Routes>
                             <Route
                                 path="post/:id"
-                                element={<ProfilePost posts={posts} profile={profile} />}
+                                element={<ProfilePost posts={posts} setPosts={setPosts} profile={profile} />}
                             />
                         </Routes>
                     </div>
