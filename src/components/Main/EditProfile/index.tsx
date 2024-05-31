@@ -6,7 +6,8 @@ import env from '../../../environment'
 interface IStyle {
     bgColor: string,
     fontColor: string,
-    postColor: string
+    postColor: string,
+    bio: string
 }
 
 function EditProfile()
@@ -16,7 +17,8 @@ function EditProfile()
     const [style, setStyle] = useState<IStyle>({
         bgColor: "",
         fontColor: "",
-        postColor: ""
+        postColor: "",
+        bio: ""
     })
 
     const handleSubmit = (event) => {
@@ -39,6 +41,7 @@ function EditProfile()
         if (name === "bgColor") setStyle({...style, bgColor: inputValue})
         if (name === "fontColor") setStyle({...style, fontColor: inputValue})
         if (name === "postColor") setStyle({...style, postColor: inputValue})
+        if (name === "bio") setStyle({...style, bio: inputValue})
     }
 
     return(
@@ -48,23 +51,23 @@ function EditProfile()
                 <div className="profile-colors">
                     <label htmlFor="bgColor">
                         Background color
-                        <input type="color" name="bgColor" placeholder="#aaaaaa" onChange={handleChange}></input>
+                        <input type="color" name="bgColor" value={style.bgColor} onChange={handleChange}></input>
                     </label>
                     <label htmlFor="fontColor">
                         Font color
-                        <input type="color" name="fontColor" placeholder="#000000" onChange={handleChange}></input>
+                        <input type="color" name="fontColor" value={style.fontColor} onChange={handleChange}></input>
                     </label>
                     <label htmlFor="postColor">
                         Post color
-                        <input type="color" name="postColor" placeholder="#FFFFFF" onChange={handleChange}></input>
+                        <input type="color" name="postColor" value={style.postColor} onChange={handleChange}></input>
                     </label>
                 </div>
                 <div className="profile-bio-edit">
                     <label htmlFor="bio">Bio
-                        <textarea placeholder="Bio (This should hold the user's existing bio)"></textarea>
+                        <textarea name="bio" placeholder="Bio (This should hold the user's existing bio)" onChange={handleChange}></textarea>
                     </label>
                 </div>
-                <button>Save changes</button>
+                <input type="submit" value="Save changes"></input>
             </form>
             <h1>Color preview</h1>
             <div className="profile-preview" 

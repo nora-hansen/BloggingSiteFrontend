@@ -13,7 +13,8 @@ export interface IProfile {
     id: number, 
     bgColor: string,
     fontColor: string,
-    postColor: string
+    postColor: string,
+    bio: string
 }
 
 function Profile({ setBgColor = (bgColor: string) => {} }) {
@@ -77,7 +78,7 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
             <UserSideBar
                 displayName={user?.displayName}
                 iconUrl={user?.iconUrl}
-                bio={user?.bio} postColor={profile?.postColor} fontColor={profile?.fontColor} userId={Number(userId)}            />
+                bio={profile?.bio} postColor={profile?.postColor} fontColor={profile?.fontColor} userId={Number(userId)}            />
             <div className="middle-of-profile">
                 <div className="post-list-and-content">
                     <PostList posts={posts}/>
