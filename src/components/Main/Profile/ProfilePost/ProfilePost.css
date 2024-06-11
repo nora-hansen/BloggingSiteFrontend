@@ -1,10 +1,19 @@
 .profile-post {
     margin: 20px;
-    padding: 10px;
+    padding: 20px;
 
     word-wrap: break-word;
 
-    width: 100%;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+.profile-post h1 {
+    padding-bottom: 5px;
+}
+
+.profile-post p {
+    padding: 0 0 5px 0;
 }
 
 .post-date {

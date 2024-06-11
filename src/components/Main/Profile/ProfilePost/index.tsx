@@ -43,17 +43,19 @@ function ProfilePost(p: {posts: IPost[], profile: IProfile, setPosts: (IPost[])}
     }
 
     return(
-        <div className="profile-post"
-        style={{backgroundColor: p.profile.postColor, color: p.profile.fontColor}}
-        >
-            <h1>{post.title}</h1>
-            <p>{post.content}</p>
-            <p className="post-date">{post.postDate}</p>
-            {userContext.user.id === post.userID &&
-                <button onClick={handleDelete} className="delete-button"><img src="../../../bin.png"></img></button>
-            }
+        <>
+            <div className="profile-post"
+            style={{backgroundColor: p.profile.postColor, color: p.profile.fontColor}}
+            >
+                <h1>{post.title}</h1>
+                <p>{post.content}</p>
+                <p className="post-date">{post.postDate}</p>
+                {userContext.user.id === post.userID &&
+                    <button onClick={handleDelete} className="delete-button"><img src="../../../bin.png"></img></button>
+                }
+            </div>
             <CommentList comments={post.comments} />
-        </div>
+        </>
     )
 }
 

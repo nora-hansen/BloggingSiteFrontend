@@ -4,6 +4,7 @@ import { IUser } from '../../../All/Post'
 import env from '../../../../../environment'
 import { Link } from 'react-router-dom'
 import { PostContext } from '../../../../../App'
+import moment from 'moment'
 
 function CommentListItem(comment: {
     id: number,
@@ -41,7 +42,10 @@ function CommentListItem(comment: {
                 <img src={user?.iconUrl ? user?.iconUrl : "../hamster.jpg"}></img>
                 <Link to={`/user/${user?.id}`}><p>{user?.displayName}</p></Link>
             </div>
-            <p>{comment.content}</p>
+            <div className="comment-content">
+                <p>{comment.content}</p>
+                <i><i>{moment(comment.commentDate).format("DD/MM/YYYY HH:mm")}</i></i>
+            </div>
         </div>
     )
 }
