@@ -24,3 +24,12 @@
     width: 50px;
     margin-right: 10px;
 }
+
+.comment-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-content i {
+    font-style: italic;
+}

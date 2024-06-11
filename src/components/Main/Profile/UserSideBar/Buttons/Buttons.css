@@ -4,3 +4,26 @@
     width: 20px;
     height: 20px;
 }
+
+.profile-button {
+    background-color: white;
+
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.profile-button img {
+    width: 15px;
+    height: 15px;
+
+    border-radius: 0;
+}
+
+.profile-button :hover {
+    background-color: rgb(0, 0, 0);
+}
+
+.profile-button :active {
+    background-color: rgb(0, 0, 0);
+}

@@ -1,4 +1,5 @@
 .single-post {
+    padding: 20px 50px 20px;
     display: flex;
     flex-direction: column;
 }
@@ -10,4 +11,31 @@
 .user-and-post {
     display: flex;
     flex-direction: row;
+}
+
+.private-indicator {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    font-style: italic;
+}
+
+.private-indicator img {
+    width: 20px;
+    height: 20px;
+
+    padding: 5px;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+.info-section {
+    font-style: italic;
 }

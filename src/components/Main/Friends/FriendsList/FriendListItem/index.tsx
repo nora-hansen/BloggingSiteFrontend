@@ -24,7 +24,7 @@ function FriendListItem(friend: {id: number, iconUrl: string, displayName: strin
         <div className="friend-item">
             <img src={friend.iconUrl} alt={`${friend.displayName}'s icon image`}/>
             <Link to={`/user/${friend.id}`}><p>{friend.displayName}</p></Link>
-            <button onClick={handleRemove}>Remove Friend</button>
+            <button className="delete-friend" onClick={handleRemove}><img src="../delete-friend.png" /></button>
         </div>
     )
 }

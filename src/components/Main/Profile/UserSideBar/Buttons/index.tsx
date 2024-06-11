@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import './Buttons.css'
 import { UserContext } from '../../../../../App'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import env from '../../../../../environment'
 
 function Buttons(user: {userId: number}) {
@@ -9,7 +9,9 @@ function Buttons(user: {userId: number}) {
     const [activeFriendRequest, setActiveFriendRequest] = useState<boolean>()
     const [isFriend, setIsFriend] = useState<boolean>(false)
 
-    useEffect(() => {
+    useEffect(() => { 
+        setIsFriend(false)
+        setActiveFriendRequest(false)
         if (user?.userId !== userContext.user.id)  // Check if this is the profile
                                                     //  of the signed in user
         {
@@ -64,16 +66,31 @@ function Buttons(user: {userId: number}) {
         }
     }
 
+    if (user.userId === undefined)
+        return <Navigate to="/notfound" />
+
     return(
         <>
-            {Number(user?.userId) == userContext.user?.id && <Link to="/edit-profile"><button>Edit profile</button></Link>}
-            {Number(user?.userId) != userContext.user?.id && userContext.bearer != "" && !activeFriendRequest && !isFriend && <button name="addfriend" onClick={handleClick}>Add friend</button>}
-            {Number(user?.userId) != userContext.user?.id && userContext.bearer != "" && activeFriendRequest && <p>Friend request sent!</p>}
-            {Number(user?.userId) != userContext.user?.id && isFriend && userContext.bearer != ""
+            { Number(user.userId) == userContext.user?.id && 
+                <Link to="/edit-profile">
+                    <button className="profile-button">
+                        <img src="../user.png"/> Edit profile
+                    </button>
+                </Link>
+            }
+            { Number(user.userId) != userContext.user?.id && userContext.bearer != "" && !activeFriendRequest && !isFriend && 
+                <button name="addfriend" className="profile-button" onClick={handleClick}>Add friend</button>
+            }
+            { Number(user.userId) != userContext.user?.id && userContext.bearer != "" && activeFriendRequest &&        
+                <p>Friend request sent!</p>
+            }
+            { Number(user.userId) != userContext.user?.id && isFriend && userContext.bearer != ""
             && 
                 <>
                     <img className="friend-icon" src="../friends.png"></img><p>You are friends!</p>
-                    <button name="removefriend" onClick={handleClick}>Remove friend</button>
+                    <button name="removefriend" className="profile-button" onClick={handleClick}>
+                        <img src="../delete-friend.png"/>Remove friend
+                    </button>
                 </>
             }
         </>
