@@ -3,8 +3,6 @@ import './Post.css'
 import { Link } from 'react-router-dom';
 
 import env from '../../../../environment'
-import CommentList from '../../Post/CommentList';
-import CommentField from '../../Post/CommentField';
 import { IComment, PostContext, UserContext } from '../../../../App';
 import UserSection from './UserSection';
 
@@ -17,7 +15,7 @@ export interface IUser {
     profileId: number
   }
 
-function Post(post: {
+function PostListItem(post: {
     id: number
     title: string,
     content: string,
@@ -88,4 +86,4 @@ function Post(post: {
     )
 }
 
-export default Post;
+export default PostListItem;

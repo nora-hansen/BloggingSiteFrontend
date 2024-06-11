@@ -2,7 +2,7 @@ import './All.css'
 
 import { PostContext, UserContext } from '../../../App';
 import { useContext } from 'react';
-import Post from './Post';
+import PostListItem from './PostListItem';
 
 function All() {
 
@@ -18,7 +18,7 @@ function All() {
             <div className="post-list-all">
                 {postContext.posts.map((post, index) => 
                     !post.isDraft && (userContext.user.id === post.userID || post.visibility < 1) && 
-                        <Post key={index}
+                        <PostListItem key={index}
                         id={post.id}
                         title={post.title}
                         content={post.content}
