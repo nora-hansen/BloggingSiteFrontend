@@ -9,6 +9,7 @@ function Home()
             <a href="https://www.flaticon.com/free-icons/add" title="add icons">Add icons created by Freepik - Flaticon</a>
             <a href="https://www.flaticon.com/free-icons/follow" title="follow icons">Follow icons created by Handicon - Flaticon</a>
             <a href="https://www.flaticon.com/free-icons/unfollow" title="unfollow icons">Unfollow icons created by Handicon - Flaticon</a>
+            <a href="https://www.flaticon.com/free-icons/settings" title="settings icons">Settings icons created by Freepik - Flaticon</a>
         </>
         
     )
