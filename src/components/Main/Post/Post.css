@@ -26,3 +26,12 @@
 
     padding: 5px;
 }
+
+.post {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-section {
+    font-style: italic;
+}

@@ -7,6 +7,7 @@ import PostContent from './PostContent';
 import CommentList from './CommentList';
 import UserInfo from './UserInfo';
 import CommentField from './CommentField';
+import moment from 'moment';
 
 function Post() {
     const { postId } = useParams<{ postId?: string }>();
@@ -15,6 +16,7 @@ function Post() {
     
     const userContext = useContext(UserContext)
     const postContext = useContext(PostContext)
+    const date = new Date()
 
     useEffect(() => {
         setPost(postContext.posts.find(p => p.id === Number(postId)))
@@ -72,13 +74,18 @@ function Post() {
                     iconUrl={post.postingUser.iconUrl}
                     id={post.postingUser.id} 
                 />
-                <div className='post-section'>
-                    {post.visibility === 2 && post.postingUser.id === userContext.user.id &&
-                        <div className="private-indicator">
-                            <img src="../privacy.png"></img><p>Only you can see this</p>
-                        </div>
-                    }
-                    <PostContent title={post.title} content={post.content} />
+                <div className="post">
+                    <div className='post-section'>
+                        {post.visibility === 2 && post.postingUser.id === userContext.user.id &&
+                            <div className="private-indicator">
+                                <img src="../privacy.png"></img><p>Only you can see this</p>
+                            </div>
+                        }
+                        <PostContent title={post.title} content={post.content} />
+                    </div>
+                    <div className="info-section">
+                        <i>{moment(post.postDate).format("DD/MM/YYYY HH:mm")}</i>
+                    </div>
                 </div>
             </div>
             {userContext.user.id === post.userID &&
