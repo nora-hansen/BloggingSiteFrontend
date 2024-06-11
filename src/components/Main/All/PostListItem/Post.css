@@ -5,15 +5,18 @@
 
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 .post-content-full {
     background-color: white;
     padding: 15px;
     border-radius: 3px;
-    width: 100%;
+    width: 88%;
     display: block;
     font-size: medium;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .post-content-full h1 {
@@ -28,6 +31,7 @@
     flex-direction: row;
     align-items: center;
     padding: 5px;
+    padding-right: 20px;
 }
 
 .post-user-details p {
