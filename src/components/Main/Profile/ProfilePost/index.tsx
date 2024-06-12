@@ -5,7 +5,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import CommentList from '../../Post/CommentList'
 import { IProfile } from '..'
 import env from '../../../../environment'
-import ProfilePostOptions from './ProfilePostOptions'
+import PostOptions from '../../PostOptions'
 
 function ProfilePost(p: {posts: IPost[], profile: IProfile, setPosts: (IPost[])}) 
 {
@@ -55,7 +55,11 @@ function ProfilePost(p: {posts: IPost[], profile: IProfile, setPosts: (IPost[])}
                 </div>
             </Link>
             {userContext.user.id === post.userID &&
-                <ProfilePostOptions post={post} handleDelete={handleDelete}/>
+                <PostOptions 
+                    post={post} 
+                    handleDelete={handleDelete}
+                    setPosts={p.setPosts}    
+                />
             }
             <CommentList comments={post.comments} />
         </>

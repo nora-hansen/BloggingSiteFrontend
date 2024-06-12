@@ -1,16 +1,22 @@
 import './ProfilePostOptions.css'
-import { IPost, UserContext } from '../../../../../App'
+import { IPost, UserContext } from '../../../App'
 import { useContext, useState } from 'react'
-import env from '../../../../../environment'
+import env from '../../../environment'
 
-function ProfilePostOptions(post: {post: IPost, handleDelete: () => void}) {
+function PostOptions(post: 
+    {
+        post: IPost, 
+        handleDelete: (event: unknown) => void, 
+        setPosts: () => void, 
+        posts: IPost[]
+    }
+) {
     const [postVisibility, setPostVisibility] = useState<number>(post.post.visibility)
     const userContext = useContext(UserContext)
 
     const handleChange = (event) => {
         event.preventDefault()
-        setPostVisibility(event.target.value)
-        console.log("Visibility", postVisibility)
+        setPostVisibility(Number(event.target.value))
     }
 
     const handleSave = (event) => {
@@ -28,7 +34,9 @@ function ProfilePostOptions(post: {post: IPost, handleDelete: () => void}) {
         .then(
             response => response.json()
         )
-        .then(data => console.log(data))
+        .then(() => {
+            
+        })
     }
 
     return(
@@ -44,7 +52,7 @@ function ProfilePostOptions(post: {post: IPost, handleDelete: () => void}) {
                     </img>
             </button>
             <label htmlFor="visibility">Visibility</label>
-            <select name="visibility" id="visibility" onChange={handleChange}>
+            <select value={postVisibility} name="visibility" id="visibility" onChange={handleChange}>
                 <option value={0}>Public</option>
                 <option value={1}>Friends only</option>
                 <option value={2}>Private</option>
@@ -66,4 +74,4 @@ function ProfilePostOptions(post: {post: IPost, handleDelete: () => void}) {
     )
 }
 
-export default ProfilePostOptions
+export default PostOptions

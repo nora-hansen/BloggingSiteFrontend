@@ -9,15 +9,15 @@ function PostList(p: {posts: IPost[]} ) {
     return(
         <div className="post-list">
             <h3>Posts</h3>
-            <ul>
+            <ul className="post-list-ul">
                 {p.posts.map((p, index) => 
                     !p.isDraft && (p.visibility === 0 || p.userID === userContext.user.id) &&
-                    <>
+                    <li>
                         <Link to={`post/${p.id}`}><li key={index}>{p.title || p.content}</li></Link>
                         {p.visibility === 2 &&
                             <img src="../privacy.png"></img>
                         }
-                    </>
+                    </li>
                 )}
             </ul>
         </div>

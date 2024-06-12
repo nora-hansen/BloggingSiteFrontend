@@ -37,9 +37,13 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
 
         setUserLoaded(true)
 
-        fetch(`${env.url}/posts?userid=${userId}`)
-            .then(response => response.json())
-            .then(data => setPosts(data))
+        if(postContext.posts === null || postContext.posts === undefined)
+            fetch(`${env.url}/posts?userid=${userId}`)
+                .then(response => response.json())
+                .then(data => setPosts(data))
+        else setPosts(
+            postContext.posts.filter(p => p.userID === Number(userId))
+        )
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userId])
@@ -50,14 +54,15 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
             .then(data => setProfile(data))
 
         if(userLoaded && !friendsLoaded)
-            {        fetch(`${env.url}/userfriend/${user?.id}`)
-            .then(response => response.json())
-            .then(data => 
-                {
-                    setUser({...user, friends: data.map((d: { friend: unknown; }) => d.friend)})
-                    setFriendsLoaded(true)
-                }
-            )}
+            {
+                fetch(`${env.url}/userfriend/${user?.id}`)
+                    .then(response => response.json())
+                    .then(data => 
+                        {
+                            setUser({...user, friends: data.map((d: { friend: unknown; }) => d.friend)})
+                            setFriendsLoaded(true)
+                        }
+                    )}
     }, [user])
 
     useEffect(() => {
@@ -85,7 +90,11 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
             <UserSideBar
                 displayName={user?.displayName}
                 iconUrl={user?.iconUrl}
-                bio={profile?.bio} postColor={profile?.postColor} fontColor={profile?.fontColor} userId={Number(userId)}            />
+                bio={profile?.bio} 
+                postColor={profile?.postColor} 
+                fontColor={profile?.fontColor} 
+                userId={Number(userId)}  
+            />
             <div className="middle-of-profile">
                 <div className="post-list-and-content">
                     <PostList posts={posts}/>
@@ -93,7 +102,12 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
                         <Routes>
                             <Route
                                 path="post/:id"
-                                element={<ProfilePost posts={posts} setPosts={setPosts} profile={profile} />}
+                                element={
+                                <ProfilePost 
+                                    posts={posts} 
+                                    setPosts={setPosts} 
+                                    profile={profile}
+                                />}
                             />
                         </Routes>
                     </div>

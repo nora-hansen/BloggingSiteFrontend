@@ -3,8 +3,34 @@
     flex-direction: column;
 
     width: 150px;
+    height: 300px;
+
+    overflow: scroll;
+
+    background-color: aquamarine;
+    padding: 5px;
+}
+
+.post-list h3 {
+    font-size: medium;
 }
 
 .post-list li {
     font-size: small;
+    
+}
+
+.post-list-ul li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style-type: circle;
+    padding-top: 2px;
+}
+
+.post-list-ul li img {
+    width: 17px;
+    height: 17px;
+
+    margin-left: 5px;
 }
