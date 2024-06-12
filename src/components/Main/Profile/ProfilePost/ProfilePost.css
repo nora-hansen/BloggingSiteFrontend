@@ -1,5 +1,5 @@
 .profile-post {
-    margin: 20px;
+    margin: 20px 0 20px;
     padding: 20px;
 
     word-wrap: break-word;
@@ -22,5 +22,11 @@
 }
 
 .delete-button {
-    
+    width: 30px;
+    height: 30px;
+}
+
+.delete-button img {
+    height: 20px;
+    width: 20px;
 }

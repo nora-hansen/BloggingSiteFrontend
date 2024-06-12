@@ -14,5 +14,9 @@
     width: 20px;
     height: 20px;
 
-    padding-left: 10px;
+    padding: 0 10px;
+}
+
+.user-icon {
+    margin: 5px 10px;
 }

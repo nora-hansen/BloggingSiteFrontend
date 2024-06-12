@@ -1,6 +1,6 @@
 import './FriendGrid.css'
 import FriendGridItem from './FriendGridItem'
-import { IUser } from '../../All/Post'
+import { IUser } from '../../../../App'
 
 function FriendGrid(user: {friends: IUser[]}) {
     return(

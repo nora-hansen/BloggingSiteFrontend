@@ -66,6 +66,13 @@ function Profile({ setBgColor = (bgColor: string) => {} }) {
 
     if(!user || !posts || !profile)
     {
+        if (!user) {
+            console.log("Waiting for user")
+        } else if (!posts) {
+            console.log("Waiting for posts")
+        } else if (!profile) {
+            console.log("Waiting for profile")
+        }
         return <p>Loading...</p>
     }
 
